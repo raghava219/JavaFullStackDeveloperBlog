@@ -9,8 +9,8 @@ import { ArticleService } from '../../core/services/article.service';
   selector: 'app-article',
   standalone: true,
   imports: [CommonModule],
-  templateURL: './article.component.html',
-  styleURL: './article.component.css'
+  templateUrl: './article.component.html',
+  styleUrl: './article.component.css'
 })
 export class ArticleComponent implements OnInit {
   article?: Article;
