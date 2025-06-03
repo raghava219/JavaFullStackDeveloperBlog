@@ -10,20 +10,7 @@ import { ArticleService } from '../../core/services/article.service';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="container" *ngIf="article">
-      <article class="article-content">
-        <h1>{{ article.title }}</h1>
-        <div class="meta">
-          <span>By {{ article.author }}</span>
-          <span>{{ article.readingTime }} min read</span>
-          <span>{{ article.createdAt | date }}</span>
-        </div>
-        <div class="tags">
-          <span class="tag" *ngFor="let tag of article.tags">{{ tag }}</span>
-        </div>
-        <div class="content" [innerHTML]="renderedContent"></div>
-      </article>
-    </div>
+    
   `,
   styles: [`
     
