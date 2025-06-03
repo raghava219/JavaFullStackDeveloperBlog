@@ -26,52 +26,7 @@ import { ArticleService } from '../../core/services/article.service';
     </div>
   `,
   styles: [`
-    .article-content {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem 0;
-    }
-
-    .meta {
-      color: var(--text-secondary);
-      margin: 1rem 0;
-      display: flex;
-      gap: 1rem;
-    }
-
-    .tags {
-      display: flex;
-      gap: 0.5rem;
-      margin: 1rem 0;
-    }
-
-    .tag {
-      background: var(--primary-color);
-      color: white;
-      padding: 0.25rem 0.75rem;
-      border-radius: 1rem;
-      font-size: 0.875rem;
-    }
-
-    .content {
-      line-height: 1.7;
-    }
-
-    .content :deep(h2) {
-      margin: 2rem 0 1rem;
-    }
-
-    .content :deep(p) {
-      margin: 1rem 0;
-    }
-
-    .content :deep(pre) {
-      background: var(--surface-color);
-      padding: 1rem;
-      border-radius: 0.5rem;
-      overflow-x: auto;
-      margin: 1rem 0;
-    }
+    
   `]
 })
 export class ArticleComponent implements OnInit {
