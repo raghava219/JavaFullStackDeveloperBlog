@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { Article } from '../../core/models/article.model';
 import { ArticleService } from '../../core/services/article.service';
 import { Observable } from 'rxjs';
@@ -8,12 +9,14 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-categories',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   template: `
     <div class="container">
       <h1 class="page-title">Categories</h1>
       <div class="categories-grid">
-        <div *ngFor="let category of categories$ | async" class="category-card">
+        <div *ngFor="let category of categories$ | async" 
+             class="category-card"
+             [routerLink]="['/categories', category.name]">
           <h2>{{ category.name }}</h2>
           <p>{{ category.count }} articles</p>
         </div>
@@ -38,6 +41,12 @@ import { map } from 'rxjs/operators';
       padding: 1.5rem;
       border-radius: 0.5rem;
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .category-card:hover {
+      transform: translateY(-2px);
     }
 
     .category-card h2 {

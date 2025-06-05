@@ -24,6 +24,11 @@ const routes: Routes = [
       import('./app/features/categories/categories.component').then(m => m.CategoriesComponent)
   },
   {
+    path: 'categories/:name',
+    loadComponent: () =>
+      import('./app/features/categories/category-details.component').then(m => m.CategoryDetailsComponent)
+  },
+  {
     path: 'tags',
     loadComponent: () =>
       import('./app/features/tags/tags.component').then(m => m.TagsComponent)
