@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: '',
     loadComponent: () => 
-      import('./app/features/home/home.component').then(m => m.HomeComponent)
+      import('./app/features/categories/categories.component').then(m => m.CategoriesComponent)
   },
   {
     path: 'articles/:slug',
