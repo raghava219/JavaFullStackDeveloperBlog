@@ -25,7 +25,7 @@ export class ArticleService {
       id: '2',
       title: 'Getting Started with Java 17',
       slug: 'getting-started-with-angular-17',
-      content: `Java 17 was the first the Open Sourced Commercial version by Oracle.`,
+      content: `Java 17, an LTS release, brings enhanced security, performance improvements, and new language features like Sealed Classes and Pattern Matching for switch, simplifying modern Java development.`,
       excerpt: 'Learn about the latest features in Java 17',
       author: 'Raghava',
       categories: ['Java'],
