@@ -32,6 +32,11 @@ const routes: Routes = [
     path: 'tags',
     loadComponent: () =>
       import('./app/features/tags/tags.component').then(m => m.TagsComponent)
+  }, 
+  {
+    path: 'add',
+    loadComponent: () =>
+      import('./app/features/tags/add.component').then(m => m.AddComponent)
   }
 ];
 
