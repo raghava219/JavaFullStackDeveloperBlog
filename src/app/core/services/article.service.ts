@@ -5,7 +5,7 @@ import { Article } from '../models/article.model';
 @Injectable({
   providedIn: 'root',
 })
-export class ArticleService {
+export class ArticleService {   
   private mockArticles: Article[] = [
     {
       id: '1',
