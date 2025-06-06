@@ -15,7 +15,7 @@ export class ArticleService {
       excerpt: 'Learn about the latest features in Angular 18',
       author: 'John Doe',
       categories: ['Angular', 'Java'],
-      tags: ['angular', 'typescript', 'web-development'],
+      tags: ['angular', 'typescript', 'web-development', 'Java'],
       createdAt: new Date(),
       updatedAt: new Date(),
       readingTime: 5,
