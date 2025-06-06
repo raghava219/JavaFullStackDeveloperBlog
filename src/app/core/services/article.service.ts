@@ -21,6 +21,20 @@ export class ArticleService {
       readingTime: 5,
       featured: true,
     },
+    {
+      id: '2',
+      title: 'Getting Started with Java 17',
+      slug: 'getting-started-with-angular-17',
+      content: `Java 17 was the first the Open Sourced Commercial version by Oracle.`,
+      excerpt: 'Learn about the latest features in Java 17',
+      author: 'Raghava',
+      categories: ['Java'],
+      tags: ['angular', 'typescript', 'web-development', 'Java'],
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      readingTime: 5,
+      featured: true,
+    },
   ];
 
   getArticles(): Observable<Article[]> {
