@@ -36,7 +36,7 @@ const routes: Routes = [
   {
     path: 'add',
     loadComponent: () =>
-      import('./app/features/tags/add.component').then(m => m.AddComponent)
+      import('./app/features/add/add.component').then(m => m.AddComponent)
   }
 ];
 
@@ -52,6 +52,7 @@ const routes: Routes = [
           <div class="nav-links">
             <a routerLink="/categories">Categories</a>
             <a routerLink="/tags">Tags</a>
+            <a routerLink="/add" class="add-btn">Add Article</a>
             <button class="theme-toggle" (click)="toggleTheme()">
               {{ isDarkMode ? '🌞' : '🌙' }}
             </button>
@@ -110,6 +111,18 @@ const routes: Routes = [
 
     .nav-links a:hover {
       color: var(--primary-color);
+    }
+
+    .add-btn {
+      background: var(--primary-color);
+      color: white !important;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      font-weight: 500;
+    }
+
+    .add-btn:hover {
+      opacity: 0.9;
     }
 
     .theme-toggle {

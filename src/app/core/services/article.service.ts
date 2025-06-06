@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { Article } from '../models/article.model';
 
 @Injectable({
@@ -37,11 +37,32 @@ export class ArticleService {
     },
   ];
 
+  private articlesSubject = new BehaviorSubject<Article[]>(this.mockArticles);
+  public articles$ = this.articlesSubject.asObservable();
+
   getArticles(): Observable<Article[]> {
-    return of(this.mockArticles);
+    return this.articles$;
   }
 
   getArticleBySlug(slug: string): Observable<Article | undefined> {
     return of(this.mockArticles.find((article) => article.slug === slug));
+  }
+
+  addArticle(article: Article): void {
+    this.mockArticles.push(article);
+    this.articlesSubject.next([...this.mockArticles]);
+  }
+
+  updateArticle(id: string, updatedArticle: Partial<Article>): void {
+    const index = this.mockArticles.findIndex(article => article.id === id);
+    if (index !== -1) {
+      this.mockArticles[index] = { ...this.mockArticles[index], ...updatedArticle, updatedAt: new Date() };
+      this.articlesSubject.next([...this.mockArticles]);
+    }
+  }
+
+  deleteArticle(id: string): void {
+    this.mockArticles = this.mockArticles.filter(article => article.id !== id);
+    this.articlesSubject.next([...this.mockArticles]);
   }
 }
