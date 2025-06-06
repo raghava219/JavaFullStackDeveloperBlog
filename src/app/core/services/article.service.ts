@@ -14,7 +14,7 @@ export class ArticleService {
       content: `Angular 18 introduces several key features including zoneless change detection with Signals, dynamic route redirects, enhanced form control state events, and Firebase app hosting integration.`,
       excerpt: 'Learn about the latest features in Angular 18',
       author: 'John Doe',
-      categories: ['Angular', 'Frontend'],
+      categories: ['Angular', 'Java'],
       tags: ['angular', 'typescript', 'web-development'],
       createdAt: new Date(),
       updatedAt: new Date(),
