@@ -48,7 +48,7 @@ const routes: Routes = [
     <div class="app-container">
       <header class="header">
         <nav>
-          <a routerLink="/" class="logo">DMS Global Pvt. Ltd.</a>
+          <a routerLink="/" class="logo">Data </a>
           <div class="nav-links">
             <a routerLink="/categories">Categories</a>
             <a routerLink="/tags">Tags</a>
