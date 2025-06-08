@@ -25,6 +25,8 @@ export class AddComponent {
 
   categoryInput = '';
   tagInput = '';
+  isSubmitting = false;
+  submitError: string | null = null;
 
   constructor(
     private articleService: ArticleService,
@@ -69,9 +71,11 @@ export class AddComponent {
   }
 
   onSubmit() {
-    if (this.isFormValid()) {
-      const newArticle: Article = {
-        id: Date.now().toString(),
+    if (this.isFormValid() && !this.isSubmitting) {
+      this.isSubmitting = true;
+      this.submitError = null;
+
+      const newArticle: Omit<Article, 'id' | 'createdAt' | 'updatedAt'> = {
         title: this.article.title!,
         slug: this.generateSlug(this.article.title!),
         content: this.article.content!,
@@ -79,18 +83,24 @@ export class AddComponent {
         author: this.article.author!,
         categories: this.article.categories!,
         tags: this.article.tags!,
-        createdAt: new Date(),
-        updatedAt: new Date(),
         readingTime: this.calculateReadingTime(this.article.content!),
         featured: this.article.featured!
       };
 
-      // Note: You'll need to implement addArticle method in ArticleService
-      console.log('New article to be added:', newArticle);
-      
-      // For now, just navigate back to categories
-      // this.articleService.addArticle(newArticle);
-      this.router.navigate(['/categories']);
+      this.articleService.addArticle(newArticle).subscribe({
+        next: (article) => {
+          console.log('Article added successfully:', article);
+          this.router.navigate(['/categories']);
+        },
+        error: (error) => {
+          console.error('Error adding article:', error);
+          this.submitError = 'Failed to add article. Please try again.';
+          this.isSubmitting = false;
+        },
+        complete: () => {
+          this.isSubmitting = false;
+        }
+      });
     }
   }
 

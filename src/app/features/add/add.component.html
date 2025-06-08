@@ -2,6 +2,10 @@
   <div class="add-article-form">
     <h1 class="page-title">Add New Article</h1>
     
+    <div *ngIf="submitError" class="error-message">
+      {{ submitError }}
+    </div>
+    
     <form (ngSubmit)="onSubmit()" #articleForm="ngForm">
       <div class="form-group">
         <label for="title">Title *</label>
@@ -13,6 +17,7 @@
           required
           class="form-control"
           placeholder="Enter article title"
+          [disabled]="isSubmitting"
         />
       </div>
 
@@ -26,6 +31,7 @@
           required
           class="form-control"
           placeholder="Enter author name"
+          [disabled]="isSubmitting"
         />
       </div>
 
@@ -39,6 +45,7 @@
           class="form-control"
           rows="3"
           placeholder="Enter a brief excerpt"
+          [disabled]="isSubmitting"
         ></textarea>
       </div>
 
@@ -52,6 +59,7 @@
           class="form-control content-textarea"
           rows="10"
           placeholder="Enter article content (Markdown supported)"
+          [disabled]="isSubmitting"
         ></textarea>
       </div>
 
@@ -65,13 +73,14 @@
             class="form-control"
             placeholder="Add a category"
             (keyup.enter)="addCategory()"
+            [disabled]="isSubmitting"
           />
-          <button type="button" (click)="addCategory()" class="btn btn-secondary">Add</button>
+          <button type="button" (click)="addCategory()" class="btn btn-secondary" [disabled]="isSubmitting">Add</button>
         </div>
         <div class="tags-display" *ngIf="article.categories && article.categories.length > 0">
           <span *ngFor="let category of article.categories" class="tag">
             {{ category }}
-            <button type="button" (click)="removeCategory(category)" class="tag-remove">×</button>
+            <button type="button" (click)="removeCategory(category)" class="tag-remove" [disabled]="isSubmitting">×</button>
           </span>
         </div>
       </div>
@@ -86,13 +95,14 @@
             class="form-control"
             placeholder="Add a tag"
             (keyup.enter)="addTag()"
+            [disabled]="isSubmitting"
           />
-          <button type="button" (click)="addTag()" class="btn btn-secondary">Add</button>
+          <button type="button" (click)="addTag()" class="btn btn-secondary" [disabled]="isSubmitting">Add</button>
         </div>
         <div class="tags-display" *ngIf="article.tags && article.tags.length > 0">
           <span *ngFor="let tag of article.tags" class="tag">
             {{ tag }}
-            <button type="button" (click)="removeTag(tag)" class="tag-remove">×</button>
+            <button type="button" (click)="removeTag(tag)" class="tag-remove" [disabled]="isSubmitting">×</button>
           </span>
         </div>
       </div>
@@ -103,15 +113,16 @@
             type="checkbox"
             [(ngModel)]="article.featured"
             name="featured"
+            [disabled]="isSubmitting"
           />
           Featured Article
         </label>
       </div>
 
       <div class="form-actions">
-        <button type="button" (click)="onCancel()" class="btn btn-secondary">Cancel</button>
-        <button type="submit" [disabled]="!isFormValid()" class="btn btn-primary">
-          Add Article
+        <button type="button" (click)="onCancel()" class="btn btn-secondary" [disabled]="isSubmitting">Cancel</button>
+        <button type="submit" [disabled]="!isFormValid() || isSubmitting" class="btn btn-primary">
+          {{ isSubmitting ? 'Adding...' : 'Add Article' }}
         </button>
       </div>
     </form>
