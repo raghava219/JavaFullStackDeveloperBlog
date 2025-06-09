@@ -73,7 +73,8 @@ export class SupabaseService {
       {
         auth: {
           storage: customStorage,
-          persistSession: true
+          persistSession: true,
+          autoRefreshToken: false
         }
       }
     );
