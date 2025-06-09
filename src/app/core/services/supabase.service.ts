@@ -62,7 +62,13 @@ export class SupabaseService {
   constructor() {
     this.supabase = createClient<Database>(
       environment.supabaseUrl,
-      environment.supabaseAnonKey
+      environment.supabaseAnonKey,
+      {
+        auth: {
+          storage: localStorage,
+          persistSession: true
+        }
+      }
     );
   }
 
