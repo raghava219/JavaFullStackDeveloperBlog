@@ -60,12 +60,19 @@ export class SupabaseService {
   private supabase: SupabaseClient<Database>;
 
   constructor() {
+    // Custom storage object that bypasses LockManager API
+    const customStorage = {
+      getItem: (key: string) => localStorage.getItem(key),
+      setItem: (key: string, value: string) => localStorage.setItem(key, value),
+      removeItem: (key: string) => localStorage.removeItem(key)
+    };
+
     this.supabase = createClient<Database>(
       environment.supabaseUrl,
       environment.supabaseAnonKey,
       {
         auth: {
-          storage: localStorage,
+          storage: customStorage,
           persistSession: true
         }
       }
