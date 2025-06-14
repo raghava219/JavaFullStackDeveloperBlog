@@ -75,6 +75,11 @@ export class SupabaseService {
           storage: customStorage,
           persistSession: true,
           autoRefreshToken: false
+        },
+        global: {
+          headers: {
+            'Content-Type': 'application/json',
+          }
         }
       }
     );
