@@ -6,6 +6,8 @@ import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideEffects } from '@ngrx/effects';
 import { provideRouter } from '@angular/router';
+import { AuthGuard } from './app/core/guards/auth.guard';
+import { AuthService } from './app/core/services/auth.service';
 
 const routes: Routes = [
   {
@@ -34,9 +36,15 @@ const routes: Routes = [
       import('./app/features/tags/tags.component').then(m => m.TagsComponent)
   }, 
   {
+    path: 'login',
+    loadComponent: () =>
+      import('./app/features/auth/login.component').then(m => m.LoginComponent)
+  },
+  {
     path: 'add',
     loadComponent: () =>
-      import('./app/features/add/add.component').then(m => m.AddComponent)
+      import('./app/features/add/add.component').then(m => m.AddComponent),
+    canActivate: [AuthGuard]
   }
 ];
 
@@ -53,6 +61,12 @@ const routes: Routes = [
             <a routerLink="/categories">Categories</a>
             <a routerLink="/tags">Tags</a>
             <a routerLink="/add" class="add-btn">Add Article</a>
+            <button *ngIf="authService.isAuthenticated" (click)="signOut()" class="auth-btn">
+              Sign Out
+            </button>
+            <a *ngIf="!authService.isAuthenticated" routerLink="/login" class="auth-btn">
+              Sign In
+            </a>
             <button class="theme-toggle" (click)="toggleTheme()">
               {{ isDarkMode ? '🌞' : '🌙' }}
             </button>
@@ -125,6 +139,22 @@ const routes: Routes = [
       opacity: 0.9;
     }
 
+    .auth-btn {
+      background: var(--border-color);
+      color: var(--text-color) !important;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .auth-btn:hover {
+      opacity: 0.9;
+    }
+
     .theme-toggle {
       background: none;
       border: none;
@@ -147,14 +177,37 @@ const routes: Routes = [
       text-align: center;
       color: var(--text-color);
     }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        gap: 1rem;
+      }
+      
+      .nav-links a, .auth-btn {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+      }
+    }
   `]
 })
 export class App {
   isDarkMode = false;
 
+  constructor(public authService: AuthService) {}
+
   toggleTheme() {
     this.isDarkMode = !this.isDarkMode;
     document.body.classList.toggle('dark-theme');
+  }
+
+  signOut() {
+    this.authService.signOut().subscribe({
+      next: ({ error }) => {
+        if (error) {
+          console.error('Sign out error:', error);
+        }
+      }
+    });
   }
 }
 
