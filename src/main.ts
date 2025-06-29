@@ -6,6 +6,7 @@ import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideEffects } from '@ngrx/effects';
 import { provideRouter } from '@angular/router';
+import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 import { AuthGuard } from './app/core/guards/auth.guard';
 import { AuthService } from './app/core/services/auth.service';
 
@@ -216,6 +217,10 @@ bootstrapApplication(App, {
     provideStore(),
     provideStoreDevtools(),
     provideEffects(),
-    provideRouter(routes)
+    provideRouter(routes),
+    {
+      provide: RECAPTCHA_V3_SITE_KEY,
+      useValue: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI' // Test site key - replace with your actual site key
+    }
   ]
 }).catch(err => console.error(err));

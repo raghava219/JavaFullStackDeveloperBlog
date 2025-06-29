@@ -21,6 +21,7 @@
     "@solana/wallet-standard-features": "^1.0.0",
     "@supabase/supabase-js": "^2.39.0",
     "marked": "^11.1.0",
+    "ng-recaptcha": "^13.2.1",
     "prismjs": "^1.29.0",
     "rxjs": "^7.8.1",
     "tslib": "^2.5.0",
