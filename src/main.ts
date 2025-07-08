@@ -56,7 +56,7 @@ const routes: Routes = [
     <div class="app-container">
       <header class="header">
         <nav>
-          <a routerLink="/" class="logo">Data </a>
+          <a routerLink="/" class="logo">Data Management System Pvt. Ltd.</a>
           <div class="nav-links">
             <a routerLink="/categories">Categories</a>
             <a routerLink="/tags">Tags</a>
@@ -79,7 +79,7 @@ const routes: Routes = [
       </main>
 
       <footer class="footer">
-        <p>© 2025 DevBlog. All rights reserved.</p>
+        <p>© 2025 Data Management Systems Pvt. Ltd. All rights reserved.</p>
       </footer>
     </div>
   `,

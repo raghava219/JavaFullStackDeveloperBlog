@@ -40,10 +40,12 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "development": {
-              "buildTarget": "demo:build:development"
+              "buildTarget": "demo:build:development",
+              "port": 4200
             },
             "production": {
-              "buildTarget": "demo:build:production"
+              "buildTarget": "demo:build:production",
+              "port": 4200
             }
           },
           "defaultConfiguration": "development"

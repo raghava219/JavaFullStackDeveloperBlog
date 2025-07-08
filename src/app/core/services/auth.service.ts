@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, from } from 'rxjs';
+import { BehaviorSubject, Observable, from, of } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
 import { SupabaseService } from './supabase.service';
 import { User } from '@supabase/supabase-js';
@@ -22,6 +22,10 @@ export class AuthService {
   }
 
   signUp(email: string, password: string): Observable<{ user: User | null; error: any }> {
+
+    console.log("email "+email);
+    console.log("password "+password);
+
     return from(
       this.supabase.client.auth.signUp({
         email,
@@ -39,7 +43,7 @@ export class AuthService {
       }),
       catchError(error => {
         console.error('Sign up error:', error);
-        return [{ user: null, error }];
+        return of({ user: null, error });
       })
     );
   }
@@ -62,7 +66,7 @@ export class AuthService {
       }),
       catchError(error => {
         console.error('Sign in error:', error);
-        return [{ user: null, error }];
+        return of({ user: null, error });
       })
     );
   }
