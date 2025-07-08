@@ -21,22 +21,12 @@ export class AuthService {
     this.currentUserSubject.next(session?.user || null);
   }
 
-<<<<<<< HEAD
+
   signUp(email: string, password: string): Observable<{ user: User | null; error: any }> {
-
-    console.log("email "+email);
-    console.log("password "+password);
-
-=======
-  signUp(email: string, password: string, captchaToken?: string): Observable<{ user: User | null; error: any }> {
-    const options = captchaToken ? { captchaToken } : {};
-    
->>>>>>> 1414f0c53be88af4141a8017ed726a69b939e911
     return from(
       this.supabase.client.auth.signUp({
         email,
-        password,
-        options
+        password
       })
     ).pipe(
       map(({ data, error }) => ({
@@ -55,14 +45,12 @@ export class AuthService {
     );
   }
 
-  signIn(email: string, password: string, captchaToken?: string): Observable<{ user: User | null; error: any }> {
-    const options = captchaToken ? { captchaToken } : {};
+  signIn(email: string, password: string): Observable<{ user: User | null; error: any }> {
     
     return from(
       this.supabase.client.auth.signInWithPassword({
         email,
-        password,
-        options
+        password
       })
     ).pipe(
       map(({ data, error }) => ({

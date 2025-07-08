@@ -2,13 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ReCaptchaV3Service, RecaptchaV3Module } from 'ng-recaptcha';
 import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, RecaptchaV3Module],
+  imports: [CommonModule, FormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -21,8 +20,7 @@ export class LoginComponent {
 
   constructor(
     private authService: AuthService,
-    private router: Router,
-    private recaptchaV3Service: ReCaptchaV3Service
+    private router: Router
   ) {}
 
   async onSubmit() {
@@ -35,12 +33,9 @@ export class LoginComponent {
     this.errorMessage = '';
 
     try {
-      // Execute reCAPTCHA
-      const captchaToken = await this.recaptchaV3Service.execute('login').toPromise();
-      
       const authObservable = this.isSignUp 
-        ? this.authService.signUp(this.email, this.password, captchaToken)
-        : this.authService.signIn(this.email, this.password, captchaToken);
+        ? this.authService.signUp(this.email, this.password)
+        : this.authService.signIn(this.email, this.password);
 
       authObservable.subscribe({
         next: ({ user, error }) => {
