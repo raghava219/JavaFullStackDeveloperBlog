@@ -52,7 +52,7 @@ export class LoginComponent {
         }
       });
     } catch (error) {
-      this.errorMessage = 'reCAPTCHA verification failed. Please try again.';
+      this.errorMessage = 'Verification failed. Please try again.';
       this.isLoading = false;
     }
   }
