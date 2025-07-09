@@ -13,7 +13,7 @@ const routes: Routes = [
   {
     path: '',
     loadComponent: () => 
-      import('./app/features/categories/categories.component').then(m => m.CategoriesComponent)
+      import('./app/features/home/home.component.ts').then(m => m.HomeComponent)
   },
   {
     path: 'articles/:slug',
