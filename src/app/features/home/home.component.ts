@@ -16,7 +16,7 @@ import { ArticleService } from '../../core/services/article.service';
           <div class="profile-section">
             <div class="profile-image">
               <img 
-                src="" 
+                src="src\app\images\MyProfilePic.jpg" 
                 alt="Professional headshot"
                 class="profile-photo"
               />
