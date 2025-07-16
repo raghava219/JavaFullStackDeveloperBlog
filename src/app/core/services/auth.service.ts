@@ -63,20 +63,29 @@ export class AuthService {
         .select('*')
         .eq('user_name', email)
         .eq('password', password)
-        .single()
     ).pipe(
       map(({ data, error }) => {
-        if (error || !data) {
+        if (error) {
           return {
             user: null,
-            error: error || { message: 'Invalid username or password' }
+            error: error
           };
         }
         
+        if (!data || data.length === 0) {
+          return {
+            user: null,
+            error: { message: 'Invalid username or password' }
+          };
+        }
+        
+        // Get the first (and should be only) user record
+        const userRecord = data[0];
+        
         // Create a mock user object since we're not using Supabase auth
         const mockUser = {
-          id: data.id.toString(),
-          email: data.user_name,
+          id: userRecord.id.toString(),
+          email: userRecord.user_name,
           user_metadata: {},
           app_metadata: {},
           aud: 'authenticated',
