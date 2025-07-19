@@ -67,7 +67,7 @@ export class AuthService {
       map(({ data, error }) => {
         if (error) {
           return {
-            user: email,
+            user: null,
             error: error
           };
         }
