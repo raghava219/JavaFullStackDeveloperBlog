@@ -72,7 +72,7 @@ export class AuthService {
           };
         }
         
-        if (!data || data.length === 0) {
+        if (data == null || data.length === 0) {
           return {
             user: null,
             error: { message: 'Invalid username or password' }
