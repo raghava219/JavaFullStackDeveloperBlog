@@ -75,7 +75,7 @@ export class AuthService {
         if (data == null || data.length === 0) {
           return {
             user: null,
-            error: { message: 'Provide valid username or password' }
+            error: { message: 'username or password is invalid' }
           };
         }
         
