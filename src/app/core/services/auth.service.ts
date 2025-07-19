@@ -72,7 +72,7 @@ export class AuthService {
           };
         }
 
-      console.log("content of data"+data);
+      console.log("content of data "+data);
         
         if (data == null || data.length === 0) {
           return {
