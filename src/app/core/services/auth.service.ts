@@ -71,6 +71,8 @@ export class AuthService {
             error: error
           };
         }
+
+      console.log("content of data"+data);
         
         if (data == null || data.length === 0) {
           return {
