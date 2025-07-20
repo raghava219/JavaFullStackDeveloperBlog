@@ -31,7 +31,7 @@ export class AuthService {
   }
 
 
-  signUp(email: string, password: string): Observable<{ user: User | null; error: any }> {
+/*  signUp(email: string, password: string): Observable<{ user: User | null; error: any }> {
     return from(
       this.supabase.client.auth.signUp({
         email,
@@ -53,7 +53,7 @@ export class AuthService {
       })
     );
   }
-
+*/
 
   
   signIn(email: string, password: string): Observable<{ user: User | null; error: any }> {
