@@ -57,31 +57,38 @@ export class AuthService {
 
   
   signIn(email: string, password: string): Observable<{ user: User | null; error: any }> {
+    console.log('Starting signIn with:', { email, password });
+    
     return from(
-
       this.supabase.client
         .from('login_table')
         .select('*')
         .eq('user_name', email)
         .eq('password', password)
+        .limit(1)
     ).pipe(
       map(({ data, error }) => {
-        console.log('Query parameters:', { email, password });
-        console.log('Database response:', { data, error });
+        console.log('Raw Supabase response:', { data, error, count: data?.length });
+        
+        // Log the actual query being executed
+        console.log('Query details:', {
+          table: 'login_table',
+          filters: { user_name: email, password: password }
+        });
         
         if (error) {
-          console.error('Database error:', error);
+          console.error('Supabase query error:', error);
           return {
             user: null,
             error: error
           };
         }
 
-        console.log("Query result - data length:", data?.length || 0);
-        console.log("Query result - data content:", data);
+        console.log('Query successful - data:', data);
+        console.log('Data length:', data?.length || 0);
         
         if (data == null || data.length === 0) {
-          console.log('No matching user found in database');
+          console.log('No matching user found - checking if table has any data...');
           return {
             user: null,
             error: { message: 'username or password is invalid' }
