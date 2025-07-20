@@ -1,6 +1,6 @@
 <div class="container">
   <div class="login-form">
-    <h1 class="page-title">{{ isSignUp ? 'Sign Up' : 'Sign In' }}</h1>
+    <h1 class="page-title">Sign In</h1>
     
     <div *ngIf="errorMessage" class="error-message">
       {{ errorMessage }}
@@ -42,7 +42,7 @@
           class="btn btn-primary btn-full"
         >
           {{ isLoading ? 'Please wait...' : (isSignUp ? 'Sign Up' : 'Sign In') }}
-        </button>
+        {{ isLoading ? 'Please wait...' : 'Sign In' }}
       </div>
     </form>
 
