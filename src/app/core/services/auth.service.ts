@@ -59,8 +59,6 @@ export class AuthService {
   signIn(email: string, password: string): Observable<{ user: User | null; error: any }> {
     return from(
 
-      log.
-      
       this.supabase.client
         .from('login_table')
         .select('*')
