@@ -66,18 +66,22 @@ export class AuthService {
         .eq('password', password)
     ).pipe(
       map(({ data, error }) => {
+        console.log('Query parameters:', { email, password });
+        console.log('Database response:', { data, error });
+        
         if (error) {
+          console.error('Database error:', error);
           return {
             user: null,
             error: error
           };
         }
 
-      console.log("content of email "+email);
-      console.log("content of password "+password);
-      console.log("content of data "+data);
+        console.log("Query result - data length:", data?.length || 0);
+        console.log("Query result - data content:", data);
         
         if (data == null || data.length === 0) {
+          console.log('No matching user found in database');
           return {
             user: null,
             error: { message: 'username or password is invalid' }
