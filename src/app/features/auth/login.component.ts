@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
+import { User } from '../../core/models/article.model';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,6 @@ import { AuthService } from '../../core/services/auth.service';
 export class LoginComponent {
   email = '';
   password = '';
-  isSignUp = false;
   isLoading = false;
   errorMessage = '';
 
@@ -33,12 +33,8 @@ export class LoginComponent {
     this.errorMessage = '';
 
     try {
-      const authObservable = this.isSignUp 
-        ? this.authService.signUp(this.email, this.password)
-        : this.authService.signIn(this.email, this.password);
-
-      authObservable.subscribe({
-        next: ({ user, error }) => {
+      this.authService.signIn(this.email, this.password).subscribe({
+        next: ({ user, error }: { user: User | null; error: any }) => {
           if (error) {
             this.errorMessage = error.message || 'Authentication failed';
           } else if (user) {
@@ -46,7 +42,7 @@ export class LoginComponent {
           }
           this.isLoading = false;
         },
-        error: (error) => {
+        error: (error: any) => {
           this.errorMessage = 'An unexpected error occurred';
           this.isLoading = false;
         }
@@ -55,10 +51,5 @@ export class LoginComponent {
       this.errorMessage = 'Verification failed. Please try again.';
       this.isLoading = false;
     }
-  }
-
-  toggleMode() {
-    this.isSignUp = !this.isSignUp;
-    this.errorMessage = '';
   }
 }
