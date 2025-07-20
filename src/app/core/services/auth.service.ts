@@ -58,6 +58,9 @@ export class AuthService {
   
   signIn(email: string, password: string): Observable<{ user: User | null; error: any }> {
     return from(
+
+      log.
+      
       this.supabase.client
         .from('login_table')
         .select('*')
@@ -72,6 +75,8 @@ export class AuthService {
           };
         }
 
+      console.log("content of email "+email);
+      console.log("content of password "+password);
       console.log("content of data "+data);
         
         if (data == null || data.length === 0) {
