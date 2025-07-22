@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, from, of } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
 import { SupabaseService } from './supabase.service';
 import { User } from '@supabase/supabase-js';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class AuthService {
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
 
-  constructor(private supabase: SupabaseService) {
+  constructor(private supabase: SupabaseService, private router: Router) {
     // Check for existing session on initialization
     this.checkCustomSession();
   }
