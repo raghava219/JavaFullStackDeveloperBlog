@@ -124,7 +124,7 @@ export class AuthService {
       }),
       catchError(error => {
         console.error('Sign in error:', error);
-        return of({ user: null, error: { message: 'Login failed. Please check your credentials.' } });
+        return of({ user: null, error: { message: 'Login failed. Please check your credentials.' }            });
       })
     );
   }
@@ -133,6 +133,8 @@ export class AuthService {
     // Clear user session from localStorage and current user subject
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
+    
+    this.router.navigate(['/login']);
     
     return of({ error: null });
   }
