@@ -29,7 +29,7 @@ import { ArticleService } from '../../core/services/article.service';
           
           <div class="bio-section">
             <p class="bio-paragraph">
-              Welcome to my digital space! I'm a passionate Full Stack Developer with over 5 years of experience building robust web applications using modern technologies like Angular, React, Node.js, Java, Spring Boot and GCP cloud platforms. 
+              Welcome to my digital space! I'm a passionate Full Stack Developer with over 15 years of experience building robust web applications using modern technologies like Angular, React, Node.js, Java, Spring Boot and GCP cloud platforms. 
               My journey in software development has taken me through various industries, from online PPC startups to enterprise solutions, where I've honed my skills in creating user-centric applications that solve real-world problems.
             </p>
             
