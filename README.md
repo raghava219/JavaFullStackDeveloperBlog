@@ -6,4 +6,11 @@ https://supabase.com/docs/guides/getting-started/tutorials/with-angular?queryGro
 
 https://www.youtube.com/watch?v=v6Is9dqwbk4
 
+## Following is the Functional requiremnet of blog:
 
+1) There are three type of users - Client, Editors and Admin
+2) Clients are just consumers of this blog.
+3) Editors will be provided login credentials by the Admin.
+4) Editors login with those credentials and enter new article for blog.
+5) Admin should be having the list view of the articles, so that he can perorm all CRUD operation.
+6) 
