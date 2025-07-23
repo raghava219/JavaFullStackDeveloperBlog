@@ -29,7 +29,7 @@ import { ArticleService } from '../../core/services/article.service';
           
           <div class="bio-section">
             <p class="bio-paragraph">
-              Welcome to my digital space! I'm a passionate Full Stack Developer with over 15 years of experience building robust web applications using modern technologies like Java, Spring Boot, Angular, React, Node.js and GCP cloud platforms. 
+              Welcome to my digital space! I'm a passionate Full Stack Developer with over 15 years of experience building robust web applications using modern technologies like Java, Spring Boot, Angular, React, Python and GCP cloud platforms. 
               My journey in software development has taken me through various industries, from online PPC startups to enterprise solutions, where I've honed my skills in creating user-centric applications that solve real-world problems.
             </p>
             
@@ -43,12 +43,12 @@ import { ArticleService } from '../../core/services/article.service';
             <div class="skills-section">
               <h3>Core Expertise</h3>
               <div class="skills-grid">
+                <span class="skill-tag">Java</span>
+                <span class="skill-tag">Spring Boot</span>
                 <span class="skill-tag">Angular</span>
-                <span class="skill-tag">TypeScript</span>
-                <span class="skill-tag">Node.js</span>
-                <span class="skill-tag">PostgreSQL</span>
-                <span class="skill-tag">AWS</span>
-                <span class="skill-tag">Docker</span>
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">GCP</span>
                 <span class="skill-tag">REST APIs</span>
                 <span class="skill-tag">Supabase</span>
               </div>
