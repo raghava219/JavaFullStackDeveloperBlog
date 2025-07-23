@@ -60,7 +60,7 @@ import { ArticleService } from '../../core/services/article.service';
                   <span class="social-icon">📧</span>
                   Email
                 </a>
-                <a href="https://linkedin.com" target="_blank" class="social-link">
+                <a href="https://www.linkedin.com/in/raghava-dudi/" target="_blank" class="social-link">
                   <span class="social-icon">💼</span>
                   LinkedIn
                 </a>
