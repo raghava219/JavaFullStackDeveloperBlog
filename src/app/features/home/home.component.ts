@@ -56,7 +56,7 @@ import { ArticleService } from '../../core/services/article.service';
             
             <div class="contact-section">
               <div class="social-links">
-                <a href="https://github.com" target="_blank" class="social-link">
+                <a href="https://github.com/raghava219" target="_blank" class="social-link">
                   <span class="social-icon">📧</span>
                   Email
                 </a>
@@ -64,11 +64,11 @@ import { ArticleService } from '../../core/services/article.service';
                   <span class="social-icon">💼</span>
                   LinkedIn
                 </a>
-                <a href="https://github.com" target="_blank" class="social-link">
+                <a href="https://github.com/raghava219" target="_blank" class="social-link">
                   <span class="social-icon">🐙</span>
                   GitHub
                 </a>
-                <a href="https://twitter.com" target="_blank" class="social-link">
+                <a href="https://x.com/raghava219" target="_blank" class="social-link">
                   <span class="social-icon">🐦</span>
                   Twitter
                 </a>
