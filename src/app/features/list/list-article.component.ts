@@ -13,7 +13,8 @@ import { ArticleService } from '../../core/services/article.service';
   styleUrl: './list-article.component.css'
 })
 export class ArticleListComponent implements OnInit {
-    tags$: Observable<{ name: string; count: number }[]>;
+  
+  tags$: Observable<{ name: string; count: number }[]>;
 
   constructor(private articleService: ArticleService) {
     this.tags$ = this.articleService.getArticles().pipe(
