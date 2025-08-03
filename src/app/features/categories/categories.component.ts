@@ -10,18 +10,7 @@ import { map } from 'rxjs/operators';
   selector: 'app-categories',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  template: `
-    <div class="container">
-      <h1 class="page-title">Categories</h1>
-      <div class="categories-grid">
-        <div *ngFor="let category of categories$ | async" 
-             class="category-card"
-             [routerLink]="['/categories', category.name]">
-          <h2>{{ category.name }}</h2>
-          <p>{{ category.count }} articles</p>
-        </div>
-      </div>
-    </div>
+  templateUrl:  
   `,
   styles: [`
     .page-title {
