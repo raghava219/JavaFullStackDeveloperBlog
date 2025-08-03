@@ -19,9 +19,7 @@ export class ArticleListComponent {
   tags$: Observable<{ name: string; count: number }[]>;
 
   constructor(private articleService: ArticleService) {
-    this.tags$ = this.articleService.getArticles().pipe(
-      map(articles => this.getTagCount(articles))
-    );
+    this.tags$ = this.articleService.getArticles()
   }
 
   private getTagCount(articles: Article[]): { name: string; count: number }[] {
