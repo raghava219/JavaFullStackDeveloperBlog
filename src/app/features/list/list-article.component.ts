@@ -6,11 +6,11 @@ import { Article } from '../../core/models/article.model';
 import { ArticleService } from '../../core/services/article.service';
 
 @Component({
-  selector: 'app-article',
+  selector: 'list-article',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './article.component.html',
-  styleUrl: './article.component.css'
+  templateUrl: './list-article.component.html',
+  styleUrl: './list-article.component.css'
 })
 export class ArticleComponent implements OnInit {
   article?: Article;
