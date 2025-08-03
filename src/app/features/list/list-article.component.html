@@ -1,11 +1,11 @@
 <div class="container">
   <h1 class="page-title">All Articles</h1>
+  
   <div class="articles-grid">
     <article *ngFor="let article of articles" class="card article-card">
       <p>{{ article.title }}</p>
       <p>{{ article.author }}  {{ article.readingTime }} min read • {{ article.createdAt | date }}
       </p>
-      <p class="excerpt">{{ article.excerpt }}</p>
       <div class="tags">
         <span *ngFor="let tag of article.tags" class="tag">{{ tag }}</span>
       </div>
