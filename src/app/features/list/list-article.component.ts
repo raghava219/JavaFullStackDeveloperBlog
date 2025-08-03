@@ -5,6 +5,7 @@ import { marked } from 'marked';
 import { Article } from '../../core/models/article.model';
 import { ArticleService } from '../../core/services/article.service';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'list-article',
