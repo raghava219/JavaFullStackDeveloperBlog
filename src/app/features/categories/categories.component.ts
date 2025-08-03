@@ -10,8 +10,8 @@ import { map } from 'rxjs/operators';
   selector: 'app-categories',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './categeories.component.html' ,
-  styleUrl: './categories.component.css'
+  templateUrl: './categories.component.html' ,
+  styleUrl:    './categories.component.css'
 })
 export class CategoriesComponent {
   categories$: Observable<{ name: string; count: number }[]>;
