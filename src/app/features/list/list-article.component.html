@@ -1,22 +1,38 @@
 <div class="container">
   <h1 class="page-title">All Articles</h1>
   
-  <div class="articles-grid">
+  <div class="articles-table" *ngIf="articles.length > 0">
     <div class="table-header">
       <span>Title</span>
-      <span>Author </span>
+      <span>Author</span>
       <span>Reading Time</span>
       <span>Created At</span>
       <span>Tags</span>
       <span>Categories</span>
     </div>
-    <div *ngFor="let article of articles" class="card article-card">
-      <span>{{ article.title }}</span>
-      <span>{{ article.author }} </span>
-      <span>{{ article.readingTime }}</span>
-      <span>{{ article.createdAt | date }}</span>
-      <span>{{ article.tags }}</span>
-      <span>{{ article.categories }}</span>
+    
+    <div *ngFor="let article of articles" class="table-row">
+      <div class="cell cell-title">
+        <a [routerLink]="['/articles', article.slug]">{{ article.title }}</a>
+      </div>
+      <div class="cell cell-author">{{ article.author }}</div>
+      <div class="cell cell-reading-time">{{ article.readingTime }}</div>
+      <div class="cell cell-date">{{ article.createdAt | date:'short' }}</div>
+      <div class="cell">
+        <div class="tags-list">
+          <span *ngFor="let tag of article.tags" class="tag-item">{{ tag }}</span>
+        </div>
+      </div>
+      <div class="cell">
+        <div class="categories-list">
+          <span *ngFor="let category of article.categories" class="category-item">{{ category }}</span>
+        </div>
+      </div>
     </div>
+  </div>
+  
+  <div *ngIf="articles.length === 0" class="empty-state">
+    <h3>No Articles Found</h3>
+    <p>There are currently no articles to display.</p>
   </div>
 </div>
