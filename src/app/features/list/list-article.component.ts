@@ -1,44 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { marked } from 'marked';
+import { RouterModule } from '@angular/router';
 import { Article } from '../../core/models/article.model';
 import { ArticleService } from '../../core/services/article.service';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'list-article',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './list-article.component.html',
   styleUrl: './list-article.component.css'
 })
-export class ArticleListComponent {
+export class ArticleListComponent implements OnInit {
   
-  tags$: Observable<{ name: string; count: number }[]>;
+  articles$: Observable<Article[]>;
+  articles: Article[] = [];
 
   constructor(private articleService: ArticleService) {
-    this.tags$ = this.articleService.getArticles()
+    this.articles$ = this.articleService.getArticles();
   }
 
-  private getTagCount(articles: Article[]): { name: string; count: number }[] {
-    const tagCount = new Map<string, number>();
-    
-    articles.forEach(article => {
-      article.tags.forEach(tag => {
-        tagCount.set(tag, (tagCount.get(tag) || 0) + 1);
-      });
+  ngOnInit() {
+    this.articles$.subscribe(articles => {
+      this.articles = articles;
     });
-
-    return Array.from(tagCount.entries()).map(([name, count]) => ({ name, count }));
-  }
-
-  getTagSize(count: number): number {
-    // Scale tag size between 1rem and 2rem based on count
-    const minSize = 1;
-    const maxSize = 2;
-    const scale = (count - 1) / 10; // Adjust divisor to control scaling
-    return Math.max(minSize, Math.min(maxSize, minSize + scale));
   }
 }

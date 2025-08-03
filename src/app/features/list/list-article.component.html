@@ -1,11 +1,20 @@
-    <div class="container">
-      <h1 class="page-title">Tags</h1>
-      <div class="tags-cloud">
-        <span *ngFor="let tag of tags$ | async" 
-              class="tag"
-              [style.fontSize.rem]="getTagSize(tag.count)">
-          {{ tag.name }}
-          <span class="tag-count">({{ tag.count }})</span>
-        </span>
+<div class="container">
+  <h1 class="page-title">All Articles</h1>
+  <div class="articles-grid">
+    <article *ngFor="let article of articles" class="card article-card">
+      <h2>{{ article.title }}</h2>
+      <p class="meta">
+        By {{ article.author }} • {{ article.readingTime }} min read • {{ article.createdAt | date }}
+      </p>
+      <p class="excerpt">{{ article.excerpt }}</p>
+      <div class="tags">
+        <span *ngFor="let tag of article.tags" class="tag">{{ tag }}</span>
       </div>
+      <div class="categories">
+        <span *ngFor="let category of article.categories" class="category">{{ category }}</span>
+      </div>
+      <a [routerLink]="['/articles', article.slug]" class="read-more-btn">Read More</a>
+    </article>
+  </div>
+</div>
     </div>
