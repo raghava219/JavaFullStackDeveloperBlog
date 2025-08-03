@@ -12,7 +12,7 @@ import { ArticleService } from '../../core/services/article.service';
   templateUrl: './list-article.component.html',
   styleUrl: './list-article.component.css'
 })
-export class ArticleComponent implements OnInit {
+export class ArticleListComponent implements OnInit {
   article?: Article;
   renderedContent = '';
 
