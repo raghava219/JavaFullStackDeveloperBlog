@@ -12,7 +12,7 @@ import { ArticleService } from '../../core/services/article.service';
   templateUrl: './list-article.component.html',
   styleUrl: './list-article.component.css'
 })
-export class ArticleListComponent{
+export class ArticleListComponent {
   
   tags$: Observable<{ name: string; count: number }[]>;
 
