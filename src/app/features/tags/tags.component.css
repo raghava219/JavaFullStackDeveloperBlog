@@ -6,7 +6,7 @@
 
     .tags-cloud {
       display: flex;
-       flex-direction: column;
+      flex-direction: column;
       gap: 1rem;
       padding: 2rem;
       background: var(--surface-color);
