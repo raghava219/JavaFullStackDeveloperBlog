@@ -5,18 +5,18 @@
     <div class="table-header">
       <span>{{ article.title }}</span>
       <span>{{ article.author }} </span>
-      <p>{{ article.readingTime }}</p>
-      <p>{{ article.createdAt | date }}</p>
-      <p>{{ article.tags }}</p>
-      <p>{{ article.categories }}</p>
+      <span>{{ article.readingTime }}</span>
+      <span>{{ article.createdAt | date }}</span>
+      <span>{{ article.tags }}</span>
+      <span>{{ article.categories }}</span>
     </div>
     <div *ngFor="let article of articles" class="card article-card">
-      <p>{{ article.title }}</p>
-      <p>{{ article.author }} </p>
-      <p>{{ article.readingTime }}</p>
-      <p>{{ article.createdAt | date }}</p>
-      <p>{{ article.tags }}</p>
-      <p>{{ article.categories }}</p>
+      <span>{{ article.title }}</span>
+      <span>{{ article.author }} </span>
+      <span>{{ article.readingTime }}</span>
+      <span>{{ article.createdAt | date }}</span>
+      <span>{{ article.tags }}</span>
+      <span>{{ article.categories }}</span>
     </div>
   </div>
 </div>
