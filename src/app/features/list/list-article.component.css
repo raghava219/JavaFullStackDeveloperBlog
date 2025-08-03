@@ -28,7 +28,7 @@
 
 .table-row {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr 1.5fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr 1.5fr 1.5fr;
   gap: 1rem;
   padding: 1rem;
   border-bottom: 1px solid var(--border-color);
