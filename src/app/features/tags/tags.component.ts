@@ -9,54 +9,8 @@ import { map } from 'rxjs/operators';
   selector: 'app-tags',
   standalone: true,
   imports: [CommonModule],
-  template: `
-    <div class="container">
-      <h1 class="page-title">Tags</h1>
-      <div class="tags-cloud">
-        <span *ngFor="let tag of tags$ | async" 
-              class="tag"
-              [style.fontSize.rem]="getTagSize(tag.count)">
-          {{ tag.name }}
-          <span class="tag-count">({{ tag.count }})</span>
-        </span>
-      </div>
-    </div>
-  `,
-  styles: [`
-    .page-title {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      color: var(--text-color);
-    }
-
-    .tags-cloud {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      padding: 2rem;
-      background: var(--surface-color);
-      border-radius: 0.5rem;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-
-    .tag {
-      color: var(--primary-color);
-      padding: 0.5rem 1rem;
-      border-radius: 2rem;
-      background: var(--background-color);
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-
-    .tag:hover {
-      transform: scale(1.05);
-    }
-
-    .tag-count {
-      color: var(--text-secondary);
-      font-size: 0.8em;
-    }
-  `]
+  templateUrl: './tags.component.html',
+  styleUrl: './tags.component.css'
 })
 export class TagsComponent {
   tags$: Observable<{ name: string; count: number }[]>;
