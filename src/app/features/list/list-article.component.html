@@ -7,10 +7,9 @@
       <p>{{ article.author }} </p>
       <p>{{ article.readingTime }}</p>
       <p>{{ article.createdAt | date }}</p>
-      <p>{{ article.tags}}</p>
-      <div class="tags">
-        <span *ngFor="let tag of article.tags" class="tag">{{ tag }}</span>
-      </div>
+      <p>{{ article.tags }}</p>
+      <p>{{ article.categories }}</p>
+      
       <div class="categories">
         <span *ngFor="let category of article.categories" class="category">{{ category }}</span>
       </div>
