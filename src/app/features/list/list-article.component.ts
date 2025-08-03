@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { marked } from 'marked';
 import { Article } from '../../core/models/article.model';
 import { ArticleService } from '../../core/services/article.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'list-article',
