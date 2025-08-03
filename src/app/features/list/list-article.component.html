@@ -1,0 +1,11 @@
+    <div class="container">
+      <h1 class="page-title">Tags</h1>
+      <div class="tags-cloud">
+        <span *ngFor="let tag of tags$ | async" 
+              class="tag"
+              [style.fontSize.rem]="getTagSize(tag.count)">
+          {{ tag.name }}
+          <span class="tag-count">({{ tag.count }})</span>
+        </span>
+      </div>
+    </div>
