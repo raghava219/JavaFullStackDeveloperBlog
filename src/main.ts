@@ -33,7 +33,7 @@ const routes: Routes = [
   {
     path: 'tags',
     loadComponent: () =>
-      import('./app/features/tags/tags.component').then(m => m.TagsComponent)
+      import('./app/features/list/list-article.component').then(m => m.ArticleListComponent)
   }, 
   {
     path: 'login',
