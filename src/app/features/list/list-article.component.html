@@ -3,12 +3,12 @@
   
   <div class="articles-grid">
     <div class="table-header">
-      <span>{{ article.title }}</span>
-      <span>{{ article.author }} </span>
-      <span>{{ article.readingTime }}</span>
-      <span>{{ article.createdAt | date }}</span>
-      <span>{{ article.tags }}</span>
-      <span>{{ article.categories }}</span>
+      <span>Title</span>
+      <span>Author </span>
+      <span>Reading Time</span>
+      <span>Created At</span>
+      <span>Tags</span>
+      <span>Categories</span>
     </div>
     <div *ngFor="let article of articles" class="card article-card">
       <span>{{ article.title }}</span>
