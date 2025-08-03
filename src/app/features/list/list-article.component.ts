@@ -13,23 +13,31 @@ import { ArticleService } from '../../core/services/article.service';
   styleUrl: './list-article.component.css'
 })
 export class ArticleListComponent implements OnInit {
-  article?: Article;
-  renderedContent = '';
+    tags$: Observable<{ name: string; count: number }[]>;
 
-  constructor(
-    private route: ActivatedRoute,
-    private articleService: ArticleService
-  ) {}
+  constructor(private articleService: ArticleService) {
+    this.tags$ = this.articleService.getArticles().pipe(
+      map(articles => this.getTagCount(articles))
+    );
+  }
 
-  async ngOnInit() {
-    this.route.params.subscribe(async params => {
-      const slug = params['slug'];
-      this.articleService.getArticleBySlug(slug).subscribe(async article => {
-        if (article) {
-          this.article = article;
-          this.renderedContent = await marked.parse(article.content);
-        }
+  private getTagCount(articles: Article[]): { name: string; count: number }[] {
+    const tagCount = new Map<string, number>();
+    
+    articles.forEach(article => {
+      article.tags.forEach(tag => {
+        tagCount.set(tag, (tagCount.get(tag) || 0) + 1);
       });
     });
+
+    return Array.from(tagCount.entries()).map(([name, count]) => ({ name, count }));
+  }
+
+  getTagSize(count: number): number {
+    // Scale tag size between 1rem and 2rem based on count
+    const minSize = 1;
+    const maxSize = 2;
+    const scale = (count - 1) / 10; // Adjust divisor to control scaling
+    return Math.max(minSize, Math.min(maxSize, minSize + scale));
   }
 }
