@@ -11,6 +11,7 @@ export class ArticleService {
   // Todo: What is BehaviorSubject?
   private articlesSubject = new BehaviorSubject<Article[]>([]);
   // Todo: What is the use of $ in below varaiable
+  // Todo: Read Time is found Time Stamp in List View of Articles, instead of number. 
   public articles$ = this.articlesSubject.asObservable();
 
   constructor(private supabase: SupabaseService) {
