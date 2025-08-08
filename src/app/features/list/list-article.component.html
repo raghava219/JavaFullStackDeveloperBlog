@@ -16,9 +16,10 @@
       <div class="cell cell-title">
         <a [routerLink]="['/articles', article.slug]">{{ article.title }}</a>
       </div>
-      <div class="cell cell-author">{{ article.author }}</div>
-      <div class="cell cell-reading-time">{{ article.readingTime }}</div>
-      <div class="cell cell-date">{{ article.createdAt | date:'short' }}</div>
+        <div class="cell cell-author">{{ article.author }}
+      </div>
+      <div class="cell cell-reading-time">{{ article.readingTime | date:'short' }}</div>
+      
       <div class="cell">
         <div class="tags-list">
           <span *ngFor="let tag of article.tags" class="tag-item">{{ tag }}</span>
