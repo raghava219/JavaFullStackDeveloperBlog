@@ -8,7 +8,9 @@ import { SupabaseService } from './supabase.service';
   providedIn: 'root',
 })
 export class ArticleService {
+  // Todo: What is BehaviorSubject?
   private articlesSubject = new BehaviorSubject<Article[]>([]);
+  // Todo: What is the use of $ in below varaiable
   public articles$ = this.articlesSubject.asObservable();
 
   constructor(private supabase: SupabaseService) {
