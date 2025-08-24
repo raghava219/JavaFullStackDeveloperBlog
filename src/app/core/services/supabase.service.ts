@@ -60,6 +60,15 @@ export class SupabaseService {
   private supabase: SupabaseClient<Database>;
 
   constructor() {
+    // Validate environment variables
+    if (!environment.supabaseUrl || !environment.supabaseAnonKey) {
+      console.error('Supabase configuration missing. Please check your environment variables.');
+      console.log('Current config:', {
+        url: environment.supabaseUrl,
+        key: environment.supabaseAnonKey ? 'Present' : 'Missing'
+      });
+    }
+
     // Custom storage object that bypasses LockManager API
     const customStorage = {
       getItem: (key: string) => localStorage.getItem(key),
@@ -68,8 +77,8 @@ export class SupabaseService {
     };
 
     this.supabase = createClient<Database>(
-      environment.supabaseUrl,
-      environment.supabaseAnonKey,
+      environment.supabaseUrl || 'https://placeholder.supabase.co',
+      environment.supabaseAnonKey || 'placeholder-key',
       {
         auth: {
           storage: customStorage,
@@ -80,6 +89,9 @@ export class SupabaseService {
           headers: {
             'Content-Type': 'application/json',
           }
+        },
+        db: {
+          schema: 'public'
         }
       }
     );
@@ -87,5 +99,25 @@ export class SupabaseService {
 
   get client() {
     return this.supabase;
+  }
+
+  // Method to test connection
+  async testConnection(): Promise<boolean> {
+    try {
+      const { data, error } = await this.supabase
+        .from('articles')
+        .select('count')
+        .limit(1);
+      
+      if (error) {
+        console.error('Supabase connection test failed:', error);
+        return false;
+      }
+      
+      return true;
+    } catch (error) {
+      console.error('Supabase connection test error:', error);
+      return false;
+    }
   }
 }

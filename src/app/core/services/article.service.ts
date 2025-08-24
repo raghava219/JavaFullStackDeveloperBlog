@@ -34,12 +34,16 @@ export class ArticleService {
       map(({ data, error }) => {
         if (error) {
           console.error('Error fetching articles:', error);
+          console.log('Supabase URL:', this.supabase.client.supabaseUrl);
+          console.log('Check your Supabase configuration in .env file');
           return [];
         }
         return (data || []).map(this.mapSupabaseToArticle);
       }),
       catchError(error => {
-        console.error('Error in getArticles:', error);
+        console.error('Network error in getArticles:', error);
+        console.log('This might be a CORS issue or incorrect Supabase URL');
+        // Return empty array instead of throwing to prevent app crash
         return [];
       })
     );
