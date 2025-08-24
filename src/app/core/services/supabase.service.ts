@@ -77,8 +77,8 @@ export class SupabaseService {
     };
 
     this.supabase = createClient<Database>(
-      environment.supabaseUrl || 'https://placeholder.supabase.co',
-      environment.supabaseAnonKey || 'placeholder-key',
+      environment.supabaseUrl,
+      environment.supabaseAnonKey,
       {
         auth: {
           storage: customStorage,

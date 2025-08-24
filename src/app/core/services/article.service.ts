@@ -34,7 +34,6 @@ export class ArticleService {
       map(({ data, error }) => {
         if (error) {
           console.error('Error fetching articles:', error);
-          console.log('Supabase URL:', this.supabase.client.supabaseUrl);
           console.log('Check your Supabase configuration in .env file');
           return [];
         }
