@@ -19,12 +19,24 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
-    "lib": ["ES2022", "dom"]
+    "lib": ["ES2022", "dom"],
+    "types": ["node","vite/client"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+  "include": [
+    "src/**/*.ts", // Includes all TypeScript files in the 'src' directory and its subdirectories
+    "src/**/*.html", // Includes all HTML template files
+    "src/**/*.css", // Includes all CSS files
+    "src/assets/**/*.json" // Includes JSON files within the 'assets' folder
+  ],
+  "exclude": [
+    "node_modules", // Excludes the node_modules directory
+    "dist", // Excludes the compiled output directory
+    "e2e" // Excludes end-to-end test files
+  ]
 }

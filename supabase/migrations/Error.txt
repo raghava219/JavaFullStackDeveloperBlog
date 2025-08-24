@@ -1,0 +1,10 @@
+"Supabase query error:"{message: "TypeError: Failed to fetch",
+ details: "TypeError: Failed to fetch at window.fetch (/.preview-script.js:7:290) 
+ at https://zp1v56uxy8rdx5ypatb0ockcb9tr6a-oci3--4200--96435430.local-credentialless.webcontainer-api.io/polyfills.js:2230:32 
+ at proto.<computed> (https://zp1v56uxy8rdx5ypatb0ockcb9tr6a-oci3--4200--96435430.local-credentialless.webcontainer-api.io/polyfills.js:813:16)
+  at https://zp1v56uxy8rdx5ypatb0ockcb9tr6a-oci3--4200--96435430.local-credentialless.webcontainer-api.io/@fs/home/project/.angular/cache/18.2.20/demo/vite/deps/@supabase_supabase-js.js?v=bc5ff38d:4290:23 
+  at https://zp1v56uxy8rdx5ypatb0ockcb9tr6a-oci3--4200--96435430.local-credentialless.webcontainer-api.io/@fs/home/project/.angular/cache/18.2.20/demo/vite/deps/@supabase_supabase-js.js?v=bc5ff38d:4311:12 
+  at Generator.next (<anonymous>) at fulfilled (https://zp1v56uxy8rdx5ypatb0ockcb9tr6a-oci3--4200--96435430.local-credentialless.webcontainer-api.io/@fs/home/project/.angular/cache/18.2.20/demo/vite/deps/@supabase_supabase-js.js?v=bc5ff38d:4263:24) 
+  at _ZoneDelegate.invoke (https://zp1v56uxy8rdx5ypatb0ockcb9tr6a-oci3--4200--96435430.local-credentialless.webcontainer-api.io/polyfills.js:301:158) 
+  at Object.onInvoke (https://zp1v56uxy8rdx5ypatb0ockcb9tr6a-oci3--4200--96435430.local-credentialless.webcontainer-api.io/@fs/home/project/.angular/cache/18.2.20/demo/vite/deps/chunk-LRWN6VLD.js?v=25ad6fd8:5829:25) 
+  at _ZoneDelegate.invoke (https://zp1v56uxy8rdx5ypatb0ockcb9tr6a-oci3--4200--96435430.local-credentialless.webcontainer-api.io/polyfills.js:301:46)", hint: "", code: ""}
