@@ -29,7 +29,7 @@ import { ArticleService } from '../../core/services/article.service';
           
           <div class="bio-section">
             <p class="bio-paragraph">
-              Welcome to my digital space! I'm a passionate Full Stack Developer with over 15 years of experience building robust web applications using modern technologies like Java, Spring Boot, Angular, React, Python and GCP cloud platforms. 
+              Welcome to my digital space! I'm a passionate Full Stack Developer with over 15 years of experience building robust web applications using modern technologies like <b>Java, Spring Boot, Angular, React, Python and GCP cloud platforms</b>. 
               My journey in software development has taken me through various industries, from online PPC startups to enterprise solutions, where I've honed my skills in creating user-centric applications that solve real-world problems.
             </p>
             
@@ -56,7 +56,7 @@ import { ArticleService } from '../../core/services/article.service';
             
             <div class="contact-section">
               <div class="social-links">
-                <a href="https://github.com/raghava219" target="_blank" class="social-link">
+                <a href="mailto:raghava219@gmail.com" target="_blank" class="social-link">
                   <span class="social-icon">📧</span>
                   Email
                 </a>
@@ -78,7 +78,7 @@ import { ArticleService } from '../../core/services/article.service';
                 <a routerLink="/categories" class="cta-button">
                   Explore My Articles
                 </a>
-                <a href="mailto:contact@example.com" class="cta-button secondary">
+                <a href="mailto:raghava219@gmail.com" class="cta-button secondary">
                   Get In Touch
                 </a>
               </div>
