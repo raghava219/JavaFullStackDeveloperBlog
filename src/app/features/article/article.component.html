@@ -1,14 +1,14 @@
 <div class="container" *ngIf="article">
-      <article class="article-content">
-        <h1>{{ article.title }}</h1>
-        <div class="meta">
-          <span>By {{ article.author }}</span>
-          <span>{{ article.readingTime }} min read</span>
-          <span>{{ article.createdAt | date }}</span>
-        </div>
-        <div class="tags">
-          <span class="tag" *ngFor="let tag of article.tags">{{ tag }}</span>
-        </div>
-        <div class="content" [innerHTML]="renderedContent"></div>
-      </article>
+  <article class="article-content">
+    <h1><a href='{{ article.URL }}'>{{ article.title }}</a></h1>
+    <div class="meta">
+      <span>By {{ article.author }}</span>
+      <span>{{ article.readingTime }} min read</span>
+      <span>{{ article.createdAt | date }}</span>
     </div>
+    <div class="tags">
+      <span class="tag" *ngFor="let tag of article.tags">{{ tag }}</span>
+    </div>
+    <div class="content" [innerHTML]="renderedContent"></div>
+  </article>
+</div>

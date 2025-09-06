@@ -73,6 +73,7 @@ export class ArticleService {
   addArticle(article: Omit<Article, 'id' | 'createdAt' | 'updatedAt'>): Observable<Article | null> {
     const articleData = {
       title: article.title,
+      URL: article.URL,
       slug: article.slug,
       content: article.content,
       excerpt: article.excerpt,
@@ -114,6 +115,7 @@ export class ArticleService {
     const updateData: any = {};
     
     if (updatedArticle.title) updateData.title = updatedArticle.title;
+    if (updatedArticle.URL) updateData.URL = updatedArticle.URL;
     if (updatedArticle.slug) updateData.slug = updatedArticle.slug;
     if (updatedArticle.content) updateData.content = updatedArticle.content;
     if (updatedArticle.excerpt) updateData.excerpt = updatedArticle.excerpt;
@@ -183,6 +185,7 @@ export class ArticleService {
     return {
       id: data.id,
       title: data.title,
+      URL: data.URL,
       slug: data.slug,
       content: data.content,
       excerpt: data.excerpt,

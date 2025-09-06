@@ -15,6 +15,7 @@ import { ArticleService } from '../../core/services/article.service';
 export class AddComponent {
   article: Partial<Article> = {
     title: '',
+    URL: '',
     content: '',
     excerpt: '',
     author: '',
@@ -77,6 +78,7 @@ export class AddComponent {
 
       const newArticle: Omit<Article, 'id' | 'createdAt' | 'updatedAt'> = {
         title: this.article.title!,
+        URL: this.article.URL!,
         slug: this.generateSlug(this.article.title!),
         content: this.article.content!,
         excerpt: this.article.excerpt!,
@@ -107,6 +109,7 @@ export class AddComponent {
   isFormValid(): boolean {
     return !!(
       this.article.title?.trim() &&
+      this.article.URL?.trim() &&
       this.article.content?.trim() &&
       this.article.excerpt?.trim() &&
       this.article.author?.trim() &&
