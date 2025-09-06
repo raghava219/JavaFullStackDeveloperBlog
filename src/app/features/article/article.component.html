@@ -1,6 +1,6 @@
 <div class="container" *ngIf="article">
   <article class="article-content">
-    <h1><a href='{{ article.URL }}'>{{ article.title }}</a></h1>
+    <h1><a href='{{ article.URL }}' target="_blank" rel="noopener noreferrer">{{ article.title }}</a></h1>
     <div class="meta">
       <span>By {{ article.author }}</span>
       <span>{{ article.readingTime }} min read</span>
