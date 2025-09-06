@@ -14,7 +14,7 @@ import { RouterModule } from '@angular/router';
       <h1 class="page-title">{{ categoryName }}</h1>
       <div class="articles-grid">
         <article *ngFor="let article of articles" class="card">
-          <h2><a href="{{ article.URL }}">{{ article.title }}</a></h2>
+          <h2><a href='{{ article.URL }}' target="_blank" rel="noopener noreferrer">{{ article.title }}</a></h2>
           <p class="meta">
             By {{ article.author }} • {{ article.readingTime }} min read • {{ article.createdAt | date }}
           </p>
