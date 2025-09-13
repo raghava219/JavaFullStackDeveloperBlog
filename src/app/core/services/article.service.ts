@@ -78,7 +78,7 @@ export class ArticleService {
       content: article.content,
       excerpt: article.excerpt,
       author: article.author,
-      categories: article.categories,
+      categorie: article.categorie,
       tags: article.tags,
       reading_time: article.readingTime,
       featured: article.featured
