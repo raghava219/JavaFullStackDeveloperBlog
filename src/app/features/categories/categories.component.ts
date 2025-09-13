@@ -26,7 +26,7 @@ export class CategoriesComponent {
     const categoryCount = new Map<string, number>();
     
     articles.forEach(article => {
-      article.categories.forEach(category => {
+      article.categorie.forEach(category => {
         categoryCount.set(category, (categoryCount.get(category) || 0) + 1);
       });
     });
