@@ -56,7 +56,7 @@
 
       <div class="form-group">
         <label>Categories *</label>
-        <select [(ngModel)]="categoryInput" name="categoryInput" class="form-control">
+        <select [(ngModel)]="categoryInput" name="categoryInput" class="form-control" onchange="addCategory()">
             <option value="">--Please choose an option--</option>
             <option value="AI">AI</option>
             <option value="IT">IT</option>
