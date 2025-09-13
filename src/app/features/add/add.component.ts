@@ -19,7 +19,7 @@ export class AddComponent {
     content: '',
     excerpt: '',
     author: '',
-    categories: [],
+    categorie: '',
     tags: [],
     featured: false
   };
