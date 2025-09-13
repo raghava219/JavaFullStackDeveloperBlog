@@ -24,11 +24,7 @@
           <span *ngFor="let tag of article.tags" class="tag-item">{{ tag }}</span>
         </div>
       </div>
-      <div class="cell">
-        <div class="categories-list">
-          <span *ngFor="let category of article.categories" class="category-item">{{ category }}</span>
-        </div>
-      </div>
+      <div class="cell category-item">{{ article.categorie }}</div>
       <div class="tags-list">Edit</div>
     </div>
   </div>
