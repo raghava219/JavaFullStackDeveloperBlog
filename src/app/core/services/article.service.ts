@@ -78,7 +78,7 @@ export class ArticleService {
       content: article.content,
       excerpt: article.excerpt,
       author: article.author,
-      categorie: article.categorie,
+      category: article.category,
       tags: article.tags,
       reading_time: article.readingTime,
       featured: article.featured
@@ -120,7 +120,7 @@ export class ArticleService {
     if (updatedArticle.content) updateData.content = updatedArticle.content;
     if (updatedArticle.excerpt) updateData.excerpt = updatedArticle.excerpt;
     if (updatedArticle.author) updateData.author = updatedArticle.author;
-    if (updatedArticle.categories) updateData.categories = updatedArticle.categories;
+    if (updatedArticle.category) updateData.category = updatedArticle.category;
     if (updatedArticle.tags) updateData.tags = updatedArticle.tags;
     if (updatedArticle.readingTime) updateData.reading_time = updatedArticle.readingTime;
     if (updatedArticle.featured !== undefined) updateData.featured = updatedArticle.featured;
@@ -190,7 +190,7 @@ export class ArticleService {
       content: data.content,
       excerpt: data.excerpt,
       author: data.author,
-      categories: data.categories || [],
+      category: data.category || [],
       tags: data.tags || [],
       createdAt: new Date(data.created_at),
       updatedAt: new Date(data.updated_at),

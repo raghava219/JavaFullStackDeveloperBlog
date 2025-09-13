@@ -25,7 +25,7 @@ export class CategoryDetailsComponent implements OnInit {
     this.categoryName = this.route.snapshot.params['name'];
     this.articleService.getArticles().subscribe(articles => {
       this.articles = articles.filter(article => 
-        article.categorie.includes(this.categoryName)
+        article.category.includes(this.categoryName)
       );
     });
   }

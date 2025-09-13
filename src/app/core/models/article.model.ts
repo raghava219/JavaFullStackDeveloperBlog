@@ -6,7 +6,7 @@ export interface Article {
   content: string;
   excerpt: string;
   author: string;
-  categorie: string;
+  category: string;
   tags: string[];
   createdAt: Date;
   updatedAt: Date;

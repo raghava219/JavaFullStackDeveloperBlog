@@ -19,7 +19,7 @@ export class AddComponent {
     content: '',
     excerpt: '',
     author: '',
-    categorie: '',
+    category: '',
     tags: [],
     featured: false
   };
@@ -34,12 +34,12 @@ export class AddComponent {
     private router: Router
   ) {}
 
-  addCategory() {
+  /*addCategory() {
     if (this.categoryInput.trim() && !this.article.categories?.includes(this.categoryInput.trim())) {
       this.article.categories = [...(this.article.categories || []), this.categoryInput.trim()];
       this.categoryInput = '';
     }
-  }
+  }*/
 
 
   addTag() {
@@ -80,7 +80,7 @@ export class AddComponent {
         content: this.article.content!,
         excerpt: this.article.excerpt!,
         author: this.article.author!,
-        categories: this.article.categories!,
+        category: this.article.category!,
         tags: this.article.tags!,
         readingTime: this.calculateReadingTime(this.article.content!),
         featured: this.article.featured!
@@ -110,7 +110,7 @@ export class AddComponent {
       this.article.content?.trim() &&
       this.article.excerpt?.trim() &&
       this.article.author?.trim() &&
-      this.article.categories?.length &&
+      this.article.category?.length &&
       this.article.tags?.length
     );
   }
