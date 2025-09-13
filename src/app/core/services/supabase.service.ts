@@ -27,7 +27,7 @@ export interface Database {
           content: string;
           excerpt: string;
           author: string;
-          categories: string[];
+          categorie: string;
           tags: string[];
           created_at?: string;
           updated_at?: string;
