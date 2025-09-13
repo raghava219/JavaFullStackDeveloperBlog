@@ -19,7 +19,7 @@ export class AddComponent {
     content: '',
     excerpt: '',
     author: '',
-    categories: [],
+    categorie: '',
     tags: [],
     featured: false
   };
@@ -41,9 +41,6 @@ export class AddComponent {
     }
   }
 
-  removeCategory(category: string) {
-    this.article.categories = this.article.categories?.filter(c => c !== category) || [];
-  }
 
   addTag() {
     if (this.tagInput.trim() && !this.article.tags?.includes(this.tagInput.trim())) {

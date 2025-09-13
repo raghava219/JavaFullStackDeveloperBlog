@@ -38,7 +38,7 @@
           [disabled]="isSubmitting"></textarea>
       </div>
 
-      <div class="form-group">
+      <!--<div class="form-group">
         <label>Categories *</label>
         <div class="input-with-button">
           <input type="text" [(ngModel)]="categoryInput" name="categoryInput" class="form-control"
@@ -52,6 +52,16 @@
               [disabled]="isSubmitting">×</button>
           </span>
         </div>
+      </div> -->
+
+      <div class="form-group">
+        <label>Categories *</label>
+        <select [(ngModel)]="categoryInput" name="categoryInput" class="form-control" onchange="addCategory()">
+            <option value="">--Please choose an option--</option>
+            <option value="AI Tool">AI Tool</option>
+            <option value="IT">IT</option>
+            <option value="Management">Management</option>
+        </select>
       </div>
 
       <div class="form-group">
