@@ -25,9 +25,11 @@ export class CategoriesComponent {
   private getCategoryCount(articles: Article[]): { name: string; count: number }[] {
     const categoryCount = new Map<string, number>();
     
-    articles.forEach(article => {
-        categoryCount.set(article.category, (categoryCount.get(article.category) || 0) + 1);
-    });
+    /*articles.forEach(article => {
+      article.category.forEach(category => {
+        categoryCount.set(category, (categoryCount.get(category) || 0) + 1);
+      });
+    });*/
 
     return Array.from(categoryCount.entries()).map(([name, count]) => ({ name, count }));
   }
