@@ -41,9 +41,6 @@ export class AddComponent {
     }
   }
 
-  removeCategory(category: string) {
-    this.article.categories = this.article.categories?.filter(c => c !== category) || [];
-  }
 
   addTag() {
     if (this.tagInput.trim() && !this.article.tags?.includes(this.tagInput.trim())) {
