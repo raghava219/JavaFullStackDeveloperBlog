@@ -4,11 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Article } from '../../core/models/article.model';
 import { ArticleService } from '../../core/services/article.service';
+import { EditorModule } from 'primeng/editor';
+//import { AngularEditorConfig, AngularEditorModule } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-add',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, EditorModule],
   templateUrl: './add.component.html',
   styleUrl: './add.component.css'
 })
@@ -28,6 +30,19 @@ export class AddComponent {
   tagInput = '';
   isSubmitting = false;
   submitError: string | null = null;
+
+
+  // editorConfig: AngularEditorConfig = {
+  //   editable: true,
+  //   spellcheck: true,
+  //   height: '15rem',
+  //   minHeight: '5rem',
+  //   placeholder: 'Enter text here...',
+  //   translate: 'no',
+  //   defaultParagraphSeparator: 'p',
+  //   defaultFontName: 'Arial',
+  // };
+  
 
   constructor(
     private articleService: ArticleService,
@@ -110,7 +125,7 @@ export class AddComponent {
       this.article.content?.trim() &&
       this.article.excerpt?.trim() &&
       this.article.author?.trim() &&
-      this.article.category?.length &&
+      this.article.category?.trim() &&
       this.article.tags?.length
     );
   }
