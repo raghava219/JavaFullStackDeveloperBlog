@@ -31,24 +31,12 @@
           placeholder="Enter a brief excerpt" [disabled]="isSubmitting"></textarea>
       </div>
 
-      <!-- <div class="form-group">
-        <label for="content">Content *</label>
-        <angular-editor [config]="editorConfig" id="content" name="content" [(ngModel)]="article.content" required
-          class="form-control content-textarea" rows="10" placeholder="Enter article content (Markdown supported)"
-          [disabled]="isSubmitting"></angular-editor>
-      </div> -->
-
       <div class="form-group">
-        <label for="content">Content *</label>
-        <p-editor [(ngModel)]="article.content" id="content" name="content" [style]="{ height: '320px' }"></p-editor>
-      </div>
-
-      <!-- <div class="form-group">
         <label for="content">Content *</label>
         <textarea id="content" name="content" [(ngModel)]="article.content" required
           class="form-control content-textarea" rows="10" placeholder="Enter article content (Markdown supported)"
           [disabled]="isSubmitting"></textarea>
-      </div> -->
+      </div>
 
       <!--<div class="form-group">
         <label>Categories *</label>
@@ -68,11 +56,11 @@
 
       <div class="form-group">
         <label>Categories *</label>
-        <select [(ngModel)]="categoryInput" name="categoryInput" class="form-control">
-          <option value="">--Please choose an option--</option>
-          <option value="AI Tool">AI Tool</option>
-          <option value="IT">IT</option>
-          <option value="Management">Management</option>
+        <select [(ngModel)]="categoryInput" name="categoryInput" class="form-control" onchange="addCategory()">
+            <option value="">--Please choose an option--</option>
+            <option value="AI Tool">AI Tool</option>
+            <option value="IT">IT</option>
+            <option value="Management">Management</option>
         </select>
       </div>
 

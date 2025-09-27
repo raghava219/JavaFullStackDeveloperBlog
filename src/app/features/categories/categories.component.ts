@@ -13,10 +13,8 @@ import { map } from 'rxjs/operators';
   templateUrl: './categories.component.html' ,
   styleUrl:    './categories.component.css'
 })
-
 export class CategoriesComponent {
-
-  categories$: Observable<{ category: string; count: number }[]>;
+  categories$: Observable<{ name: string; count: number }[]>;
 
   constructor(private articleService: ArticleService) {
     this.categories$ = this.articleService.getArticles().pipe(
@@ -24,15 +22,13 @@ export class CategoriesComponent {
     );
   }
 
-  private getCategoryCount(articles: Article[]): { category: string; count: number }[] {
-
+  private getCategoryCount(articles: Article[]): { name: string; count: number }[] {
     const categoryCount = new Map<string, number>();
     
     articles.forEach(article => {
         categoryCount.set(article.category, (categoryCount.get(article.category) || 0) + 1);
     });
 
-    return Array.from(categoryCount.entries()).map(([category, count]) => ({ category, count }));
+    return Array.from(categoryCount.entries()).map(([name, count]) => ({ name, count }));
   }
-
 }
