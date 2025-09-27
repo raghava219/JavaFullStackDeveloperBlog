@@ -4,7 +4,7 @@
   background: var(--surface-color);
   padding: 2rem;
   border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .page-title {
@@ -59,7 +59,7 @@
 .content-textarea {
   min-height: 200px;
   resize: vertical;
-  font-family: "Courier New", monospace;
+  font-family: 'Courier New', monospace;
 }
 
 .input-with-button {
@@ -172,21 +172,16 @@
     margin: 0 1rem;
     padding: 1rem;
   }
-
+  
   .form-actions {
     flex-direction: column;
   }
-
+  
   .input-with-button {
     flex-direction: column;
   }
-
+  
   .input-with-button .form-control {
     margin-bottom: 0.5rem;
   }
 }
-
-/* angular-editor-toolbar button i {
-  font-family: FontAwesome !important;
-  color: #474d6d !important;
-} */

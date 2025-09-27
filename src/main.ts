@@ -8,7 +8,6 @@ import { provideEffects } from '@ngrx/effects';
 import { provideRouter } from '@angular/router';
 import { AuthGuard } from './app/core/guards/auth.guard';
 import { AuthService } from './app/core/services/auth.service';
-import { provideHttpClient } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -217,8 +216,6 @@ bootstrapApplication(App, {
     provideStore(),
     provideStoreDevtools(),
     provideEffects(),
-    provideHttpClient(),
     provideRouter(routes)
   ]
 }).catch(err => console.error(err));
-

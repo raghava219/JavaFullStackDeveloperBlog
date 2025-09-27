@@ -27,11 +27,6 @@
           },
           "options": {
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "./node_modules/@kolkov/angular-editor/assets/",
-                "output": "./assets/fonts/"
-              },
               "src/favicon.ico",
               "src/assets"
             ],
@@ -40,10 +35,7 @@
             "outputPath": "dist/demo",
             "polyfills": ["zone.js"],
             "scripts": [],
-            "styles": [
-              "src/global_styles.css",
-              "node_modules/@kolkov/angular-editor/themes/default.scss"
-            ],
+            "styles": ["src/global_styles.css"],
             "tsConfig": "tsconfig.app.json"
           }
         },
