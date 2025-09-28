@@ -24,7 +24,6 @@ export class AddComponent {
     featured: false
   };
 
-  categoryInput = '';
   tagInput = '';
   isSubmitting = false;
   submitError: string | null = null;
@@ -34,12 +33,6 @@ export class AddComponent {
     private router: Router
   ) {}
 
-  /*addCategory() {
-    if (this.categoryInput.trim() && !this.article.categories?.includes(this.categoryInput.trim())) {
-      this.article.categories = [...(this.article.categories || []), this.categoryInput.trim()];
-      this.categoryInput = '';
-    }
-  }*/
 
 
   addTag() {
@@ -110,7 +103,7 @@ export class AddComponent {
       this.article.content?.trim() &&
       this.article.excerpt?.trim() &&
       this.article.author?.trim() &&
-      this.article.category?.length &&
+      this.article.category?.trim()  &&
       this.article.tags?.length
     );
   }
