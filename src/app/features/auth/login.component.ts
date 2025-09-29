@@ -17,6 +17,7 @@ export class LoginComponent {
   password = '';
   isLoading = false;
   errorMessage = '';
+  isSignUp = false;
 
   constructor(
     private authService: AuthService,
@@ -51,5 +52,10 @@ export class LoginComponent {
       this.errorMessage = 'Verification failed. Please try again.';
       this.isLoading = false;
     }
+  }
+
+   toggleMode() {
+    this.isSignUp = !this.isSignUp;
+    this.errorMessage = '';
   }
 }

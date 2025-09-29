@@ -1,50 +1,39 @@
 <div class="container">
   <div class="login-form">
-    <h1 class="page-title">Sign In</h1>
-    
+    <h1 class="page-title">{{ isSignUp ? 'Sign Up' : 'Sign In' }}</h1>
+
     <div *ngIf="errorMessage" class="error-message">
       {{ errorMessage }}
     </div>
-    
+
     <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
       <div class="form-group">
         <label for="email">Email *</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          [(ngModel)]="email"
-          required
-          class="form-control"
-          placeholder="Enter your email"
-          [disabled]="isLoading"
-        />
+        <input type="email" id="email" name="email" [(ngModel)]="email" required class="form-control"
+          placeholder="Enter your email" [disabled]="isLoading" />
       </div>
 
       <div class="form-group">
         <label for="password">Password *</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          [(ngModel)]="password"
-          required
-          class="form-control"
-          placeholder="Enter your password"
-          [disabled]="isLoading"
-        />
+        <input type="password" id="password" name="password" [(ngModel)]="password" required class="form-control"
+          placeholder="Enter your password" [disabled]="isLoading" />
       </div>
 
       <div class="form-actions">
-        <button 
-          type="submit" 
-          [disabled]="!email || !password || isLoading" 
-          class="btn btn-primary btn-full"
-        >
-        {{ isLoading ? 'Please wait...' : 'Sign In' }}
+        <button type="submit" [disabled]="!email || !password || isLoading" class="btn btn-primary btn-full">
+          {{ isLoading ? 'Please wait...' : 'Sign In' }}
         </button>
       </div>
     </form>
+
+    <div class="toggle-mode">
+      <p>
+        {{ isSignUp ? 'Already have an account?' : "Don't have an account?" }}
+        <button type="button" (click)="toggleMode()" class="link-button" [disabled]="isLoading">
+          {{ isSignUp ? 'Sign In' : 'Sign Up' }}
+        </button>
+      </p>
+    </div>
 
   </div>
 </div>
