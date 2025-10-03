@@ -83,7 +83,110 @@ const routes: Routes = [
       </footer>
     </div>
   `,
-  styleUrl: './global_styles.css'
+  styles: `.app-container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      background: var(--surface-color);
+      padding: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+
+    .add-btn {
+      background: var(--primary-color);
+      color: white !important;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      font-weight: 500;
+    }
+
+    .add-btn:hover {
+      opacity: 0.9;
+    }
+
+    .auth-btn {
+      background: var(--border-color);
+      color: var(--text-color) !important;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .auth-btn:hover {
+      opacity: 0.9;
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    main {
+      flex: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+      width: 100%;
+    }
+
+    .footer {
+      background: var(--surface-color);
+      padding: 1rem;
+      text-align: center;
+      color: var(--text-color);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        gap: 1rem;
+      }
+      
+      .nav-links a, .auth-btn {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+      }
+    }`
 })
 export class App {
   isDarkMode = false;
