@@ -33,9 +33,9 @@
 
       <div class="form-group">
         <label for="content">Content *</label>
-        <textarea id="content" name="content" [(ngModel)]="article.content" required
-          class="form-control content-textarea" rows="10" placeholder="Enter article content (Markdown supported)"
-          [disabled]="isSubmitting"></textarea>
+        <angular-editor id="content" name="content" [(ngModel)]="article.content" required
+          [config]="editorConfig" [disabled]="isSubmitting"
+          placeholder="Enter article content"></angular-editor>
       </div>
 
 
