@@ -8,6 +8,7 @@ import { provideEffects } from '@ngrx/effects';
 import { provideRouter } from '@angular/router';
 import { AuthGuard } from './app/core/guards/auth.guard';
 import { AuthService } from './app/core/services/auth.service';
+import { provideAuth0 } from '@auth0/auth0-angular';
 
 const routes: Routes = [
   {
@@ -31,7 +32,7 @@ const routes: Routes = [
       import('./app/features/categories/category-details.component').then(m => m.CategoryDetailsComponent)
   },
   {
-    path: 'tags',
+    path: 'list',
     loadComponent: () =>
       import('./app/features/list/list-article.component').then(m => m.ArticleListComponent)
   }, 
@@ -59,7 +60,7 @@ const routes: Routes = [
           <a routerLink="/" class="logo">Data Management Blog</a>
           <div class="nav-links">
             <a routerLink="/categories">Categories</a>
-            <a routerLink="/tags">Tags</a>
+            <a routerLink="/list">List</a>
             <a routerLink="/add" class="add-btn">Add Article</a>
             <button *ngIf="authService.isAuthenticated" (click)="signOut()" class="auth-btn">
               Sign Out
@@ -214,6 +215,13 @@ bootstrapApplication(App, {
     provideStore(),
     provideStoreDevtools(),
     provideEffects(),
-    provideRouter(routes)
+    provideRouter(routes),
+    provideAuth0({
+      domain: 'dev-uxqx8hsfd25oa0a0.us.auth0.com',
+      clientId: 'k0l3HMyPTQCFCTPE2PjgGooYScXXzbd4',
+      authorizationParams: {
+        redirect_uri: window.location.origin
+      }
+    })
   ]
 }).catch(err => console.error(err));
