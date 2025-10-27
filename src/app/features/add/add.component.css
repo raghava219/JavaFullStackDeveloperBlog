@@ -62,6 +62,32 @@
   font-family: 'Courier New', monospace;
 }
 
+/* Angular Editor Styles */
+:host ::ng-deep .angular-editor-wrapper {
+  border: 1px solid var(--border-color);
+  border-radius: 0.375rem;
+  background: var(--background-color);
+}
+
+:host ::ng-deep .angular-editor-toolbar {
+  background: var(--surface-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+:host ::ng-deep .angular-editor-textarea {
+  background: var(--background-color);
+  color: var(--text-color);
+  min-height: 200px;
+}
+
+:host ::ng-deep .angular-editor-button {
+  color: var(--text-color);
+}
+
+:host ::ng-deep .angular-editor-button:hover {
+  background: var(--border-color);
+}
+
 .input-with-button {
   display: flex;
   gap: 0.5rem;
