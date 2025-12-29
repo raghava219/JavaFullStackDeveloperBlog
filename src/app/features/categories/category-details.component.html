@@ -8,10 +8,10 @@
                 </a>
             </h2>
             <p class="meta">
-                By {{ article.author }} • {{ article.readingTime }} min read • {{ article.createdAt | date }}
+                By {{ article.author }} • {{ article.createdAt | date }}
             </p>
             <p class="excerpt">{{ article.excerpt }}</p>
             <a [routerLink]="['/articles', article.slug]" class="btn">Read More</a>
         </article>
     </div>
-</div>
+</div>  

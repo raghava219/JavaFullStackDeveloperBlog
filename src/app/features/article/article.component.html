@@ -10,5 +10,8 @@
       <span class="tag" *ngFor="let tag of article.tags">{{ tag }}</span>
     </div>
     <div class="content" [innerHTML]="renderedContent"></div>
+    <!-- TODO: Add a button to roll back to previous category. 
+       <button class="category-btn" (click)="rollBackToCategory()">Roll Back to Category</button>
+    -->
   </article>
 </div>

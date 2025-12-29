@@ -46,6 +46,11 @@ const routes: Routes = [
     loadComponent: () =>
       import('./app/features/add/add.component').then(m => m.AddComponent),
     canActivate: [AuthGuard]
+  }, 
+  {
+    path: 'tags',
+    loadComponent: () =>
+      import('./app/features/tags/tags.component').then(m => m.TagsComponent)
   }
 ];
 
@@ -60,6 +65,7 @@ const routes: Routes = [
           <a routerLink="/" class="logo">Data Management Blog</a>
           <div class="nav-links">
             <a routerLink="/categories">Categories</a>
+            <a routerLink="/tags">Tags</a>
             <a routerLink="/list">List</a>
             <a routerLink="/add" class="add-btn">Add Article</a>
             <button *ngIf="authService.isAuthenticated" (click)="signOut()" class="auth-btn">

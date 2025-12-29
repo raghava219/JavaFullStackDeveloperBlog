@@ -16,8 +16,20 @@ https://www.youtube.com/watch?v=v6Is9dqwbk4
 
 ToDo List:
 ----------
+1. Feature: Slides Creation.
+   Activity:
+   1. Provision of Tag tab for the users. 
+   2. Improve the visibility of tiles like slides when the users clicks on specific tag.
+   Start Date: 29-12-2025
+   End Date: 31-12-2025   
+
+2. Feture: Good to Have
+   Activity: 
+   1. Add a button to roll back to previous category in article.component.html. 
 1. Deploying the application to GCP, following is the reference link:
 https://www.youtube.com/watch?v=O-rnuP3h4u8
 2. When the user clicks on edit list in list, he should be above to edit the contents.
+
+
 
 
