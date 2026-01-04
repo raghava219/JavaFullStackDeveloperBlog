@@ -37,52 +37,6 @@ export class ArticleService {
     }
   })
 
-
-  public uploadFile(file: File): Observable<string> {
-    // Determine content type from file extension if file.type is empty
-    let contentType = file.type;
-    if (!contentType || contentType === 'application/octet-stream') {
-      const extension = file.name.split('.').pop()?.toLowerCase();
-      const mimeTypes: { [key: string]: string } = {
-        'jpg': 'image/jpeg',
-        'jpeg': 'image/jpeg',
-        'png': 'image/png',
-        'gif': 'image/gif',
-        'webp': 'image/webp',
-        'svg': 'image/svg+xml',
-        'pdf': 'application/pdf',
-        'txt': 'text/plain',
-        'md': 'text/markdown'
-      };
-      contentType = mimeTypes[extension || ''] || 'application/octet-stream';
-    }
-    
-    console.log('Uploading file:', file.name, 'Size:', file.size, 'Original Type:', file.type, 'Using Type:', contentType);
-    
-    return from(
-      this.supabase.client.storage
-        .from('dms-global-files')
-        .upload(file.name, file, {
-          cacheControl: '3600',
-          upsert: true,
-          contentType: contentType
-        })
-    ).pipe(
-      map(({ data, error }) => {
-        if (error) {
-          console.error('Supabase upload error:', error);
-          throw error;
-        }
-        console.log('File uploaded successfully:', data);
-        return file.name;
-      }),
-      catchError(error => {
-        console.error('Upload error:', error);
-        throw error;
-      })
-    );
-  }
-
   getArticles(): Observable<Article[]> {
     return from(
       this.supabase.client
@@ -143,15 +97,6 @@ export class ArticleService {
       featured: article.featured,
       fileName: article.fileName
     };
-
-    console.log('articleData:', articleData);
-
-    this.uploadFile(new File([article.fileName], article.fileName))
-    .subscribe(fileName => {
-      articleData.fileName = fileName;
-      console.log('fileName:', fileName);
-    });
-
 
     return from(
       this.supabase.client

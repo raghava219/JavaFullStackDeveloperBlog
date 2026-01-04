@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Article } from '../../core/models/article.model';
 import { ArticleService } from '../../core/services/article.service';
+import { SupabaseService } from '../../core/services/supabase.service';
 
 @Component({
   selector: 'app-add',
@@ -32,7 +33,8 @@ export class AddComponent {
 
   constructor(
     private articleService: ArticleService,
-    private router: Router
+    private router: Router,
+    private supabase: SupabaseService
   ) {}
 
 
@@ -67,24 +69,53 @@ export class AddComponent {
         'md': 'text/markdown'
       };
       
-      const detectedType = mimeTypes[extension || ''] || file.type || 'application/octet-stream';
+      // Always prioritize extension-based detection over browser's file.type
+      const contentType = mimeTypes[extension || ''] || file.type || 'application/octet-stream';
+
+      console.log('Detected file type for upload:', contentType);
       
-      // Create a new File object with the correct type if needed
-      if (!file.type || file.type !== detectedType) {
-        this.selectedFile = new File([file], file.name, { type: detectedType });
-      } else {
-        this.selectedFile = file;
-      }
+      // Create a new File object with the correct type
+      this.selectedFile = new File([file], file.name, { type: contentType });
       
-      this.article.fileName = this.selectedFile.name;
       console.log('File selected:', {
         name: this.selectedFile.name,
         size: this.selectedFile.size,
         type: this.selectedFile.type,
         originalType: file.type,
         extension: extension,
-        detectedType: detectedType
+        detectedType: contentType
       });
+
+      // Upload file immediately using Blob with explicit content type
+      console.log('Uploading file:', this.selectedFile.name, 
+        'Size:', this.selectedFile.size, 
+        'Type:', contentType);
+      
+      // Create a Blob with the correct MIME type
+      const blob = new Blob([file], { type: contentType });
+      
+      this.supabase.client.storage
+        .from('dms-global-files')
+        .upload(file.name, blob, {
+          cacheControl: '3600',
+          upsert: true,
+          contentType: contentType
+        })
+        .then(({ data, error }) => {
+          if (error) {
+            console.error('Supabase upload error:', error);
+            this.submitError = 'Failed to upload file. Please try again.';
+            this.selectedFile = null;
+          } else {
+            console.log('File uploaded successfully:', data);
+            this.article.fileName = file.name;
+          }
+        })
+        .catch(error => {
+          console.error('Upload error:', error);
+          this.submitError = 'Failed to upload file. Please try again.';
+          this.selectedFile = null;
+        });
     }
   }
 
@@ -108,23 +139,8 @@ export class AddComponent {
       this.isSubmitting = true;
       this.submitError = null;
 
-      // Upload file first if selected
-      if (this.selectedFile) {
-        this.articleService.uploadFile(this.selectedFile).subscribe({
-          next: (fileName) => {
-            console.log('File uploaded successfully:', fileName);
-            this.article.fileName = fileName;
-            this.createArticle();
-          },
-          error: (error) => {
-            console.error('Error uploading file:', error);
-            this.submitError = 'Failed to upload file. Please try again.';
-            this.isSubmitting = false;
-          }
-        });
-      } else {
-        this.createArticle();
-      }
+      // File already uploaded in onFileSelected, just create the article
+      this.createArticle();
     }
   }
 
