@@ -30,6 +30,3 @@ ToDo List:
 https://www.youtube.com/watch?v=O-rnuP3h4u8
 2. When the user clicks on edit list in list, he should be above to edit the contents.
 
-
-
-

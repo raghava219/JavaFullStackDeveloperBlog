@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable, from, BehaviorSubject } from 'rxjs';
-import { map, tap, catchError } from 'rxjs/operators';
+import { map, tap, catchError, switchMap } from 'rxjs/operators';
 import { Article } from '../models/article.model';
 import { SupabaseService } from './supabase.service';
+import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
+
+
 
 @Injectable({
   providedIn: 'root',
@@ -22,6 +25,62 @@ export class ArticleService {
     this.getArticles().subscribe(articles => {
       this.articlesSubject.next(articles);
     });
+  }
+
+  public s3Client = new S3Client({
+    forcePathStyle: true,
+    region: 'ap-southeast-2',
+    endpoint: 'https://sfkxqkimfcoajbvbbfoj.storage.supabase.co/storage/v1/s3',
+    credentials: {
+      accessKeyId: '37b2ac3cca5fbddd735c0abe93e98711',
+      secretAccessKey: 'b42b15ca3ed2f916dfabe72da182cd96c08f835525da3d4c307b57468b2027aa',
+    }
+  })
+
+
+  public uploadFile(file: File): Observable<string> {
+    // Determine content type from file extension if file.type is empty
+    let contentType = file.type;
+    if (!contentType || contentType === 'application/octet-stream') {
+      const extension = file.name.split('.').pop()?.toLowerCase();
+      const mimeTypes: { [key: string]: string } = {
+        'jpg': 'image/jpeg',
+        'jpeg': 'image/jpeg',
+        'png': 'image/png',
+        'gif': 'image/gif',
+        'webp': 'image/webp',
+        'svg': 'image/svg+xml',
+        'pdf': 'application/pdf',
+        'txt': 'text/plain',
+        'md': 'text/markdown'
+      };
+      contentType = mimeTypes[extension || ''] || 'application/octet-stream';
+    }
+    
+    console.log('Uploading file:', file.name, 'Size:', file.size, 'Original Type:', file.type, 'Using Type:', contentType);
+    
+    return from(
+      this.supabase.client.storage
+        .from('dms-global-files')
+        .upload(file.name, file, {
+          cacheControl: '3600',
+          upsert: true,
+          contentType: contentType
+        })
+    ).pipe(
+      map(({ data, error }) => {
+        if (error) {
+          console.error('Supabase upload error:', error);
+          throw error;
+        }
+        console.log('File uploaded successfully:', data);
+        return file.name;
+      }),
+      catchError(error => {
+        console.error('Upload error:', error);
+        throw error;
+      })
+    );
   }
 
   getArticles(): Observable<Article[]> {
@@ -81,8 +140,18 @@ export class ArticleService {
       category: article.category,
       tags: article.tags,
       reading_time: article.readingTime,
-      featured: article.featured
+      featured: article.featured,
+      fileName: article.fileName
     };
+
+    console.log('articleData:', articleData);
+
+    this.uploadFile(new File([article.fileName], article.fileName))
+    .subscribe(fileName => {
+      articleData.fileName = fileName;
+      console.log('fileName:', fileName);
+    });
+
 
     return from(
       this.supabase.client
@@ -124,6 +193,7 @@ export class ArticleService {
     if (updatedArticle.tags) updateData.tags = updatedArticle.tags;
     if (updatedArticle.readingTime) updateData.reading_time = updatedArticle.readingTime;
     if (updatedArticle.featured !== undefined) updateData.featured = updatedArticle.featured;
+    if (updatedArticle.fileName !== undefined) updateData.fileName = updatedArticle.fileName;
     
     updateData.updated_at = new Date().toISOString();
 
@@ -195,7 +265,11 @@ export class ArticleService {
       createdAt: new Date(data.created_at),
       updatedAt: new Date(data.updated_at),
       readingTime: data.reading_time,
-      featured: data.featured
+      featured: data.featured,
+      fileName: data.fileName
     };
   }
+
+  
+
 }

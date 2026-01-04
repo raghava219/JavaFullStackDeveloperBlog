@@ -16,6 +16,7 @@
     "@angular/platform-browser": "^18.1.0",
     "@angular/router": "^18.2.13",
     "@auth0/auth0-angular": "^2.3.0",
+    "@aws-sdk/client-s3": "^3.962.0",
     "@ngrx/effects": "^18.1.1",
     "@ngrx/store": "^18.0.0",
     "@ngrx/store-devtools": "^18.1.1",

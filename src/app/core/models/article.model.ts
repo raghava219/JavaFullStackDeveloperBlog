@@ -12,4 +12,5 @@ export interface Article {
   updatedAt: Date;
   readingTime: number;
   featured: boolean;
+  fileName: string;
 }
