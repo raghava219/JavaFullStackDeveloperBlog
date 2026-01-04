@@ -85,11 +85,6 @@ export class SupabaseService {
           persistSession: true,
           autoRefreshToken: false
         },
-        global: {
-          headers: {
-            'Content-Type': 'application/json',
-          }
-        },
         db: {
           schema: 'public'
         }
