@@ -21,6 +21,9 @@
       background: var(--background-color);
       cursor: pointer;
       transition: transform 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .tag:hover {
@@ -31,3 +34,15 @@
       color: var(--text-secondary);
       font-size: 0.8em;
     }
+
+    .print-icon {
+      font-size: 1em;
+      display: inline-block;
+      align-items: right;
+    }
+
+
+
+
+
+

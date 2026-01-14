@@ -1,35 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Article } from '../../core/models/article.model';
 import { ArticleService } from '../../core/services/article.service';
 import { SupabaseService } from '../../core/services/supabase.service';
+import Quill from 'quill';
 
 @Component({
-  selector: 'app-add',
+  selector: "app-add",
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './add.component.html',
   styleUrl: './add.component.css'
 })
-export class AddComponent {
+export class AddComponent implements AfterViewInit, OnDestroy {
   article: Partial<Article> = {
-    title: '',
-    URL: '',
-    content: '',
-    excerpt: '',
-    author: '',
-    category: '',
+    title: "",
+    URL: "",
+    content: "",
+    excerpt: "",
+    author: "",
+    category: "",
     tags: [],
     featured: false,
-    fileName: ''
+    fileName: "",
   };
 
-  tagInput = '';
+  tagInput = "";
   selectedFile: File | null = null;
   isSubmitting = false;
   submitError: string | null = null;
+  private quill: Quill | null = null;
 
   constructor(
     private articleService: ArticleService,
@@ -37,7 +39,51 @@ export class AddComponent {
     private supabase: SupabaseService
   ) {}
 
+  ngAfterViewInit() {
+    // Initialize Quill editor after view is ready
+    setTimeout(() => {
+      const editorElement = document.querySelector('#quill-editor');
+      if (editorElement) {
+        this.quill = new Quill('#quill-editor', {
+          theme: 'snow',
+          modules: {
+            toolbar: [
+              [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+              [{ 'size': ['small', false, 'large', 'huge'] }],
+              ['bold', 'italic', 'underline', 'strike'],
+              [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+              [{ 'indent': '-1' }, { 'indent': '+1' }],
+              [{ 'color': [] }, { 'background': [] }],
+              [{ 'align': [] }],
+              ['blockquote', 'code-block'],
+              ['link', 'image'],
+              ['clean']
+            ]
+          },
+          placeholder: 'Write your article content here...'
+        });
 
+        // Set initial content if exists
+        if (this.article.content) {
+          this.quill.root.innerHTML = this.article.content;
+        }
+
+        // Listen for text changes and update the model
+        this.quill.on('text-change', () => {
+          if (this.quill) {
+            this.article.content = this.quill.root.innerHTML;
+          }
+        });
+      }
+    }, 0);
+  }
+
+  ngOnDestroy() {
+    if (this.quill) {
+      this.quill.off('text-change');
+      this.quill = null;
+    }
+  }
 
   addTag() {
     if (this.tagInput.trim() && !this.article.tags?.includes(this.tagInput.trim())) {
@@ -47,73 +93,79 @@ export class AddComponent {
   }
 
   removeTag(tag: string) {
-    this.article.tags = this.article.tags?.filter(t => t !== tag) || [];
+    this.article.tags = this.article.tags?.filter((t) => t !== tag) || [];
   }
 
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       const file = input.files[0];
-      
-      // Get file extension to determine MIME type
-      const extension = file.name.split('.').pop()?.toLowerCase();
-      const mimeTypes: { [key: string]: string } = {
-        'jpg': 'image/jpeg',
-        'jpeg': 'image/jpeg',
-        'png': 'image/png',
-        'gif': 'image/gif',
-        'webp': 'image/webp',
-        'svg': 'image/svg+xml',
-        'pdf': 'application/pdf',
-        'txt': 'text/plain',
-        'md': 'text/markdown'
-      };
-      
-      // Always prioritize extension-based detection over browser's file.type
-      const contentType = mimeTypes[extension || ''] || file.type || 'application/octet-stream';
 
-      console.log('Detected file type for upload:', contentType);
-      
+      // Get file extension to determine MIME type
+      const extension = file.name.split(".").pop()?.toLowerCase();
+      const mimeTypes: { [key: string]: string } = {
+        jpg: "image/jpeg",
+        jpeg: "image/jpeg",
+        png: "image/png",
+        gif: "image/gif",
+        webp: "image/webp",
+        svg: "image/svg+xml",
+        pdf: "application/pdf",
+        txt: "text/plain",
+        md: "text/markdown",
+      };
+
+      // Always prioritize extension-based detection over browser's file.type
+      const contentType =
+        mimeTypes[extension || ""] || file.type || "application/octet-stream";
+
+      console.log("Detected file type for upload:", contentType);
+
       // Create a new File object with the correct type
       this.selectedFile = new File([file], file.name, { type: contentType });
-      
-      console.log('File selected:', {
+
+      console.log("File selected:", {
         name: this.selectedFile.name,
         size: this.selectedFile.size,
         type: this.selectedFile.type,
         originalType: file.type,
         extension: extension,
-        detectedType: contentType
+        detectedType: contentType,
       });
 
       // Upload file immediately using Blob with explicit content type
-      console.log('Uploading file:', this.selectedFile.name, 
-        'Size:', this.selectedFile.size, 
-        'Type:', contentType);
-      
+      console.log(
+        "Uploading file:",
+        this.selectedFile.name,
+        "Size:",
+        this.selectedFile.size,
+        "Type:",
+        contentType
+      );
+
       // Create a Blob with the correct MIME type
       const blob = new Blob([file], { type: contentType });
-      
+
       this.supabase.client.storage
-        .from('dms-global-files')
+        .from("dms-global-files")
         .upload(file.name, blob, {
-          cacheControl: '3600',
+          cacheControl: "3600",
           upsert: true,
-          contentType: contentType
+          contentType: contentType,
         })
         .then(({ data, error }) => {
           if (error) {
-            console.error('Supabase upload error:', error);
-            this.submitError = 'Failed to upload file. Please try again.';
+            console.error("Supabase upload error:", error);
+            this.submitError = "Failed to upload file. Please try again.";
             this.selectedFile = null;
           } else {
-            console.log('File uploaded successfully:', data);
+            console.log("File uploaded successfully:", data);
             this.article.fileName = file.name;
           }
         })
-        .catch(error => {
-          console.error('Upload error:', error);
-          this.submitError = 'Failed to upload file. Please try again.';
+        .catch((error) => {
+          console.error("Upload error:", error);
+          this.submitError = "Failed to upload file. Please try again.";
           this.selectedFile = null;
         });
     }
@@ -122,9 +174,9 @@ export class AddComponent {
   generateSlug(title: string): string {
     return title
       .toLowerCase()
-      .replace(/[^a-z0-9\s-]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-')
+      .replace(/[^a-z0-9\s-]/g, "")
+      .replace(/\s+/g, "-")
+      .replace(/-+/g, "-")
       .trim();
   }
 
@@ -145,7 +197,7 @@ export class AddComponent {
   }
 
   private createArticle() {
-    const newArticle: Omit<Article, 'id' | 'createdAt' | 'updatedAt'> = {
+    const newArticle: Omit<Article, "id" | "createdAt" | "updatedAt"> = {
       title: this.article.title!,
       URL: this.article.URL!,
       slug: this.generateSlug(this.article.title!),
@@ -161,17 +213,17 @@ export class AddComponent {
 
     this.articleService.addArticle(newArticle).subscribe({
       next: (article) => {
-        console.log('Article added successfully:', article);
-        this.router.navigate(['/categories']);
+        console.log("Article added successfully:", article);
+        this.router.navigate(["/categories"]);
       },
       error: (error) => {
-        console.error('Error adding article:', error);
-        this.submitError = 'Failed to add article. Please try again.';
+        console.error("Error adding article:", error);
+        this.submitError = "Failed to add article. Please try again.";
         this.isSubmitting = false;
       },
       complete: () => {
         this.isSubmitting = false;
-      }
+      },
     });
   }
 
@@ -188,6 +240,6 @@ export class AddComponent {
   }
 
   onCancel() {
-    this.router.navigate(['/categories']);
+    this.router.navigate(["/categories"]);
   }
 }

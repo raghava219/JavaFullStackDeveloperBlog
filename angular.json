@@ -26,16 +26,16 @@
             }
           },
           "options": {
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "index": "src/index.html",
             "browser": "src/main.ts",
             "outputPath": "dist/demo",
             "polyfills": ["zone.js"],
             "scripts": [],
-            "styles": ["src/global_styles.css"],
+            "styles": [
+              "src/global_styles.css",
+              "node_modules/quill/dist/quill.snow.css"
+            ],
             "tsConfig": "tsconfig.app.json"
           }
         },
