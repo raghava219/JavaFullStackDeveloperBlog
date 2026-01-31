@@ -31,7 +31,8 @@ export class AddComponent implements AfterViewInit, OnDestroy {
   selectedFile: File | null = null;
   isSubmitting = false;
   submitError: string | null = null;
-  private quill: Quill | null = null;
+  private contentQuill: Quill | null = null;
+  private excerptQuill: Quill | null = null;
 
   constructor(
     private articleService: ArticleService,
@@ -40,11 +41,12 @@ export class AddComponent implements AfterViewInit, OnDestroy {
   ) {}
 
   ngAfterViewInit() {
-    // Initialize Quill editor after view is ready
+    // Initialize Quill editors after view is ready
     setTimeout(() => {
-      const editorElement = document.querySelector('#quill-editor');
-      if (editorElement) {
-        this.quill = new Quill('#quill-editor', {
+      // Initialize content editor
+      const contentEditorElement = document.querySelector('#content-quill-editor');
+      if (contentEditorElement) {
+        this.contentQuill = new Quill('#content-quill-editor', {
           theme: 'snow',
           modules: {
             toolbar: [
@@ -65,13 +67,41 @@ export class AddComponent implements AfterViewInit, OnDestroy {
 
         // Set initial content if exists
         if (this.article.content) {
-          this.quill.root.innerHTML = this.article.content;
+          this.contentQuill.root.innerHTML = this.article.content;
         }
 
         // Listen for text changes and update the model
-        this.quill.on('text-change', () => {
-          if (this.quill) {
-            this.article.content = this.quill.root.innerHTML;
+        this.contentQuill.on('text-change', () => {
+          if (this.contentQuill) {
+            this.article.content = this.contentQuill.root.innerHTML;
+          }
+        });
+      }
+
+      // Initialize excerpt editor
+      const excerptEditorElement = document.querySelector('#excerpt-quill-editor');
+      if (excerptEditorElement) {
+        this.excerptQuill = new Quill('#excerpt-quill-editor', {
+          theme: 'snow',
+          modules: {
+            toolbar: [
+              ['bold', 'italic', 'underline'],
+              ['link'],
+              ['clean']
+            ]
+          },
+          placeholder: 'Enter a brief excerpt...'
+        });
+
+        // Set initial excerpt if exists
+        if (this.article.excerpt) {
+          this.excerptQuill.root.innerHTML = this.article.excerpt;
+        }
+
+        // Listen for text changes and update the model
+        this.excerptQuill.on('text-change', () => {
+          if (this.excerptQuill) {
+            this.article.excerpt = this.excerptQuill.root.innerHTML;
           }
         });
       }
@@ -79,9 +109,13 @@ export class AddComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.quill) {
-      this.quill.off('text-change');
-      this.quill = null;
+    if (this.contentQuill) {
+      this.contentQuill.off('text-change');
+      this.contentQuill = null;
+    }
+    if (this.excerptQuill) {
+      this.excerptQuill.off('text-change');
+      this.excerptQuill = null;
     }
   }
 

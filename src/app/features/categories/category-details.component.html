@@ -10,8 +10,9 @@
             <p class="meta">
                 By {{ article.author }} • {{ article.createdAt | date }}
             </p>
-            <p class="excerpt">{{ article.excerpt }}</p>
+            <!--<p class="excerpt">{{ article.excerpt }}</p> -->
+            <p class="excerpt" [innerHTML]="article.excerpt"></p>
             <a [routerLink]="['/articles', article.slug]" class="btn">Read More</a>
         </article>
     </div>
-</div>  
+</div>

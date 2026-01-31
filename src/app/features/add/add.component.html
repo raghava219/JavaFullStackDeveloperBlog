@@ -26,14 +26,13 @@
       </div>
 
       <div class="form-group">
-        <label for="excerpt">Excerpt *</label>
-        <textarea id="excerpt" name="excerpt" [(ngModel)]="article.excerpt" required class="form-control" rows="3"
-          placeholder="Enter a brief excerpt" [disabled]="isSubmitting"></textarea>
+        <label for="excerpt-quill-editor">Excerpt *</label>
+        <div id="excerpt-quill-editor" class="quill-editor"></div>
       </div>
 
       <div class="form-group">
-        <label for="quill-editor">Content *</label>
-        <div id="quill-editor" class="quill-editor"></div>
+        <label for="content-quill-editor">Content *</label>
+        <div id="content-quill-editor" class="quill-editor"></div>
       </div>
 
 
