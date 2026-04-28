@@ -1,10 +1,8 @@
-# Java Full Stack Developer Blog
+## Following is the Functionality of this Blog:
 
-## Following are reference links:
-
-https://supabase.com/docs/guides/getting-started/tutorials/with-angular?queryGroups=database-method&database-method=sql
-
-https://www.youtube.com/watch?v=v6Is9dqwbk4
+1) Following is the URL of the Blog: https://www.dms-global.in/
+2) It has following pages :
+   Home Page, Categories, Tags and "Add Article" sections.
 
 ## Following is the Functional requiremnet of blog:
 
